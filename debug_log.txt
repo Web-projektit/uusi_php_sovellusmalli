@@ -1,0 +1,924 @@
+2023-11-07 15:14:07 POST:array (
+)
+2023-11-07 15:14:07 loggedIn:
+2023-11-07 15:14:26 POST:array (
+  'email' => 'jukka.aula@omnia.fi',
+  'password' => 'jukka1234567',
+  'painike' => 'Kirjaudu',
+)
+2023-11-07 15:14:26 SELECT users.id,password,is_active,name FROM users LEFT JOIN roles ON role = roles.id WHERE email = 'jukka.aula@omnia.fi'
+2023-11-07 15:14:27 loggedIn:admin
+2023-11-07 15:14:27 array (
+  0 => 
+  array (
+    'id' => '140',
+    'firstname' => 'Ossi',
+    'lastname' => 'Aaronen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  1 => 
+  array (
+    'id' => '95',
+    'firstname' => 'Sampo',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  2 => 
+  array (
+    'id' => '151',
+    'firstname' => 'Tiia',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  3 => 
+  array (
+    'id' => '34',
+    'firstname' => 'Nella',
+    'lastname' => 'Ahtola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  4 => 
+  array (
+    'id' => '137',
+    'firstname' => 'Erkko',
+    'lastname' => 'Akkala',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  5 => 
+  array (
+    'id' => '43',
+    'firstname' => 'Niina',
+    'lastname' => 'Alanen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  6 => 
+  array (
+    'id' => '107',
+    'firstname' => 'Tero',
+    'lastname' => 'Alasalmi',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  7 => 
+  array (
+    'id' => '61',
+    'firstname' => 'Maria',
+    'lastname' => 'Ankkuri',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  8 => 
+  array (
+    'id' => '32',
+    'firstname' => 'Junnu',
+    'lastname' => 'Arhosuo',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  9 => 
+  array (
+    'id' => '74',
+    'firstname' => 'Leevi',
+    'lastname' => 'Arinen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  10 => 
+  array (
+    'id' => '25',
+    'firstname' => 'Tapio',
+    'lastname' => 'Aula',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  11 => 
+  array (
+    'id' => '59',
+    'firstname' => 'Eveliina',
+    'lastname' => 'Aunela',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  12 => 
+  array (
+    'id' => '68',
+    'firstname' => 'Petri',
+    'lastname' => 'Aunela',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  13 => 
+  array (
+    'id' => '38',
+    'firstname' => 'Anissa',
+    'lastname' => 'Auvinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  14 => 
+  array (
+    'id' => '136',
+    'firstname' => 'Janette',
+    'lastname' => 'Einola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  15 => 
+  array (
+    'id' => '110',
+    'firstname' => 'Leevi',
+    'lastname' => 'Eloharju',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  16 => 
+  array (
+    'id' => '118',
+    'firstname' => 'Amira',
+    'lastname' => 'Eloranta',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  17 => 
+  array (
+    'id' => '163',
+    'firstname' => 'Niklas',
+    'lastname' => 'Eno',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  18 => 
+  array (
+    'id' => '157',
+    'firstname' => 'Aappo',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  19 => 
+  array (
+    'id' => '90',
+    'firstname' => 'Heikki',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  20 => 
+  array (
+    'id' => '53',
+    'firstname' => 'Inkeri',
+    'lastname' => 'Eskelinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  21 => 
+  array (
+    'id' => '83',
+    'firstname' => 'Maia',
+    'lastname' => 'Eskola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  22 => 
+  array (
+    'id' => '167',
+    'firstname' => 'Meeri',
+    'lastname' => 'Haahkola',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  23 => 
+  array (
+    'id' => '37',
+    'firstname' => 'Elina',
+    'lastname' => 'Haapala',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  24 => 
+  array (
+    'id' => '164',
+    'firstname' => 'Wilma',
+    'lastname' => 'Haavisto',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+)
+2023-11-07 15:14:42 loggedIn:admin
+2023-11-07 15:14:42 array (
+  0 => 
+  array (
+    'id' => '140',
+    'firstname' => 'Ossi',
+    'lastname' => 'Aaronen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  1 => 
+  array (
+    'id' => '95',
+    'firstname' => 'Sampo',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  2 => 
+  array (
+    'id' => '151',
+    'firstname' => 'Tiia',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  3 => 
+  array (
+    'id' => '34',
+    'firstname' => 'Nella',
+    'lastname' => 'Ahtola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  4 => 
+  array (
+    'id' => '137',
+    'firstname' => 'Erkko',
+    'lastname' => 'Akkala',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  5 => 
+  array (
+    'id' => '43',
+    'firstname' => 'Niina',
+    'lastname' => 'Alanen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  6 => 
+  array (
+    'id' => '107',
+    'firstname' => 'Tero',
+    'lastname' => 'Alasalmi',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  7 => 
+  array (
+    'id' => '61',
+    'firstname' => 'Maria',
+    'lastname' => 'Ankkuri',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  8 => 
+  array (
+    'id' => '32',
+    'firstname' => 'Junnu',
+    'lastname' => 'Arhosuo',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  9 => 
+  array (
+    'id' => '74',
+    'firstname' => 'Leevi',
+    'lastname' => 'Arinen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  10 => 
+  array (
+    'id' => '25',
+    'firstname' => 'Tapio',
+    'lastname' => 'Aula',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  11 => 
+  array (
+    'id' => '59',
+    'firstname' => 'Eveliina',
+    'lastname' => 'Aunela',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  12 => 
+  array (
+    'id' => '68',
+    'firstname' => 'Petri',
+    'lastname' => 'Aunela',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  13 => 
+  array (
+    'id' => '38',
+    'firstname' => 'Anissa',
+    'lastname' => 'Auvinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  14 => 
+  array (
+    'id' => '136',
+    'firstname' => 'Janette',
+    'lastname' => 'Einola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  15 => 
+  array (
+    'id' => '110',
+    'firstname' => 'Leevi',
+    'lastname' => 'Eloharju',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  16 => 
+  array (
+    'id' => '118',
+    'firstname' => 'Amira',
+    'lastname' => 'Eloranta',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  17 => 
+  array (
+    'id' => '163',
+    'firstname' => 'Niklas',
+    'lastname' => 'Eno',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  18 => 
+  array (
+    'id' => '157',
+    'firstname' => 'Aappo',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  19 => 
+  array (
+    'id' => '90',
+    'firstname' => 'Heikki',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  20 => 
+  array (
+    'id' => '53',
+    'firstname' => 'Inkeri',
+    'lastname' => 'Eskelinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  21 => 
+  array (
+    'id' => '83',
+    'firstname' => 'Maia',
+    'lastname' => 'Eskola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  22 => 
+  array (
+    'id' => '167',
+    'firstname' => 'Meeri',
+    'lastname' => 'Haahkola',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  23 => 
+  array (
+    'id' => '37',
+    'firstname' => 'Elina',
+    'lastname' => 'Haapala',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  24 => 
+  array (
+    'id' => '164',
+    'firstname' => 'Wilma',
+    'lastname' => 'Haavisto',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+)
+2023-11-07 15:17:49 loggedIn:admin
+2023-11-07 15:17:49 array (
+  0 => 
+  array (
+    'id' => '140',
+    'firstname' => 'Ossi',
+    'lastname' => 'Aaronen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  1 => 
+  array (
+    'id' => '95',
+    'firstname' => 'Sampo',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  2 => 
+  array (
+    'id' => '151',
+    'firstname' => 'Tiia',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  3 => 
+  array (
+    'id' => '34',
+    'firstname' => 'Nella',
+    'lastname' => 'Ahtola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  4 => 
+  array (
+    'id' => '137',
+    'firstname' => 'Erkko',
+    'lastname' => 'Akkala',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  5 => 
+  array (
+    'id' => '43',
+    'firstname' => 'Niina',
+    'lastname' => 'Alanen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  6 => 
+  array (
+    'id' => '107',
+    'firstname' => 'Tero',
+    'lastname' => 'Alasalmi',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  7 => 
+  array (
+    'id' => '61',
+    'firstname' => 'Maria',
+    'lastname' => 'Ankkuri',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  8 => 
+  array (
+    'id' => '32',
+    'firstname' => 'Junnu',
+    'lastname' => 'Arhosuo',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  9 => 
+  array (
+    'id' => '74',
+    'firstname' => 'Leevi',
+    'lastname' => 'Arinen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  10 => 
+  array (
+    'id' => '25',
+    'firstname' => 'Tapio',
+    'lastname' => 'Aula',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  11 => 
+  array (
+    'id' => '59',
+    'firstname' => 'Eveliina',
+    'lastname' => 'Aunela',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  12 => 
+  array (
+    'id' => '68',
+    'firstname' => 'Petri',
+    'lastname' => 'Aunela',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  13 => 
+  array (
+    'id' => '38',
+    'firstname' => 'Anissa',
+    'lastname' => 'Auvinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  14 => 
+  array (
+    'id' => '136',
+    'firstname' => 'Janette',
+    'lastname' => 'Einola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  15 => 
+  array (
+    'id' => '110',
+    'firstname' => 'Leevi',
+    'lastname' => 'Eloharju',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  16 => 
+  array (
+    'id' => '118',
+    'firstname' => 'Amira',
+    'lastname' => 'Eloranta',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  17 => 
+  array (
+    'id' => '163',
+    'firstname' => 'Niklas',
+    'lastname' => 'Eno',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  18 => 
+  array (
+    'id' => '157',
+    'firstname' => 'Aappo',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  19 => 
+  array (
+    'id' => '90',
+    'firstname' => 'Heikki',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  20 => 
+  array (
+    'id' => '53',
+    'firstname' => 'Inkeri',
+    'lastname' => 'Eskelinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  21 => 
+  array (
+    'id' => '83',
+    'firstname' => 'Maia',
+    'lastname' => 'Eskola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  22 => 
+  array (
+    'id' => '167',
+    'firstname' => 'Meeri',
+    'lastname' => 'Haahkola',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  23 => 
+  array (
+    'id' => '37',
+    'firstname' => 'Elina',
+    'lastname' => 'Haapala',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  24 => 
+  array (
+    'id' => '164',
+    'firstname' => 'Wilma',
+    'lastname' => 'Haavisto',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+)
+2023-11-07 15:19:14 loggedIn:admin
+2023-11-07 15:19:14 array (
+  0 => 
+  array (
+    'id' => '140',
+    'firstname' => 'Ossi',
+    'lastname' => 'Aaronen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  1 => 
+  array (
+    'id' => '95',
+    'firstname' => 'Sampo',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  2 => 
+  array (
+    'id' => '151',
+    'firstname' => 'Tiia',
+    'lastname' => 'Ahokas',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  3 => 
+  array (
+    'id' => '34',
+    'firstname' => 'Nella',
+    'lastname' => 'Ahtola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  4 => 
+  array (
+    'id' => '137',
+    'firstname' => 'Erkko',
+    'lastname' => 'Akkala',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  5 => 
+  array (
+    'id' => '43',
+    'firstname' => 'Niina',
+    'lastname' => 'Alanen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  6 => 
+  array (
+    'id' => '107',
+    'firstname' => 'Tero',
+    'lastname' => 'Alasalmi',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  7 => 
+  array (
+    'id' => '61',
+    'firstname' => 'Maria',
+    'lastname' => 'Ankkuri',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  8 => 
+  array (
+    'id' => '32',
+    'firstname' => 'Junnu',
+    'lastname' => 'Arhosuo',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  9 => 
+  array (
+    'id' => '74',
+    'firstname' => 'Leevi',
+    'lastname' => 'Arinen',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  10 => 
+  array (
+    'id' => '25',
+    'firstname' => 'Tapio',
+    'lastname' => 'Aula',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  11 => 
+  array (
+    'id' => '59',
+    'firstname' => 'Eveliina',
+    'lastname' => 'Aunela',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  12 => 
+  array (
+    'id' => '68',
+    'firstname' => 'Petri',
+    'lastname' => 'Aunela',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  13 => 
+  array (
+    'id' => '38',
+    'firstname' => 'Anissa',
+    'lastname' => 'Auvinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  14 => 
+  array (
+    'id' => '136',
+    'firstname' => 'Janette',
+    'lastname' => 'Einola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  15 => 
+  array (
+    'id' => '110',
+    'firstname' => 'Leevi',
+    'lastname' => 'Eloharju',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  16 => 
+  array (
+    'id' => '118',
+    'firstname' => 'Amira',
+    'lastname' => 'Eloranta',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  17 => 
+  array (
+    'id' => '163',
+    'firstname' => 'Niklas',
+    'lastname' => 'Eno',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  18 => 
+  array (
+    'id' => '157',
+    'firstname' => 'Aappo',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  19 => 
+  array (
+    'id' => '90',
+    'firstname' => 'Heikki',
+    'lastname' => 'Erkinjuntti',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  20 => 
+  array (
+    'id' => '53',
+    'firstname' => 'Inkeri',
+    'lastname' => 'Eskelinen',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  21 => 
+  array (
+    'id' => '83',
+    'firstname' => 'Maia',
+    'lastname' => 'Eskola',
+    'is_active' => '0',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  22 => 
+  array (
+    'id' => '167',
+    'firstname' => 'Meeri',
+    'lastname' => 'Haahkola',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  23 => 
+  array (
+    'id' => '37',
+    'firstname' => 'Elina',
+    'lastname' => 'Haapala',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+  24 => 
+  array (
+    'id' => '164',
+    'firstname' => 'Wilma',
+    'lastname' => 'Haavisto',
+    'is_active' => '1',
+    'role' => '1',
+    'name' => 'user',
+  ),
+)
+2024-01-18 09:28:55 POST:array (
+)
+2024-01-18 09:28:55 loggedIn:
