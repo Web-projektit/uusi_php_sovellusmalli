@@ -112,11 +112,15 @@ if ($lisattiin_token) {
     }   
 
 if ($lahetetty){
-    $message = "Tiedot on tallennettu. Sinulle on lähetty antamaasi sähköpostiosoitteeseen
-                vahvistuspyyntö. Vahvista siinä olevasta linkistä sähköpostiosoitteesi.";
+    $message = "Tiedot on tallennettu. Sinulle on lähetty antamaasi sähköpostiosoitteeseen ";
+    $message.= "vahvistuspyyntö. Vahvista siinä olevasta linkistä sähköpostiosoitteesi.";
+    $success = "success";
+    header("Location: ./rekisterointikuittaus.php?message=$message&success=$success");
+    exit;
     }
 elseif ($lisays) {
     /* Huom. oikeammin ohjataan vahvistuspyyntöön */
+    
     $message = "Tallennus onnistui!";
     }
 else {

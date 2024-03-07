@@ -1,4 +1,5 @@
 <?php 
+/* Huom. Tässä salasanakenttien täsmääminen tarkistetaan vain palvelimella. */
 $tietokanta = "neilikka";
 $title = 'Rekisteröityminen';
 $kentat_tiedosto = ['image'];
