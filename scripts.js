@@ -1,4 +1,5 @@
 /* Esimerkki virheilmoituksen näyttämisestä */
+if (typeof virheilmoitukset !== 'undefined') 
 console.log("virheilmoitukset:",virheilmoitukset);
 const menutoggle = () => {
 try {
