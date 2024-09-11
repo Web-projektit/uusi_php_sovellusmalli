@@ -14,7 +14,7 @@ $kaannokset = array_combine($kentat,$kentat_suomi);
 $allowed_images = ['gif','png','jpg','jpeg'];
 //$kaannokset = ['firstname' => 'etunimi', 'lastname' => 'sukunimi', 'email' => 'sähköpostiosoite', 'mobilenumber' => 'matkapuhelinnumero', 'password' => 'salasana', 'password2' => 'salasana uudestaan'];
 //$kaannokset = $kentat_suomi[array_search('lastname',$kentat)]
-
+$w = "a-z-Z0-9";
 $patterns['password'] = "/^.{12,}$/";
 $patterns['password2'] = $patterns['password'];
 /* Huom. Myös heittomerkki ja tavuviiva */
@@ -22,7 +22,7 @@ $patterns['firstname'] = "/^[a-zåäöA-ZÅÄÖ'\-]+$/";
 $patterns['lastname'] = $patterns['firstname']; 
 $patterns['name'] = "/^[a-zåäöA-ZÅÄÖ '\-]+$/";
 $patterns['mobilenumber'] = "/^[0-9]{7,15}$/";
-$patterns['email'] = "/^[\w]+[\w.+-]*@[\w-]+(\.[\w-]{2,})?\.[a-zA-Z]{2,}$/";
+$patterns['email'] = "/^[$w]+[$w.+-]*@[$w-]+(\.[$w-]{2,})?\.[a-zA-Z]{2,}$/";
 $patterns['image'] = "/^[^\s]+\.(jpe?g|png|gif|bmp)$/"; 
 $patterns['rememberme'] = "/^checked$/";
 
@@ -60,7 +60,8 @@ function validationMessages($kentat){
         }
     
     function arvo($kentta) {
-        return $_POST[$kentta] ?? "";
+        $error = $GLOBALS['errors'][$kentta] ?? false;
+        return ($error) ? "" : $_POST[$kentta] ?? "";
         }   
         
     function is_invalid($kentta) {        

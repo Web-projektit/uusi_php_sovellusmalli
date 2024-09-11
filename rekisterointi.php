@@ -105,7 +105,7 @@ if ($lisays) {
 
 if ($lisattiin_token) {
     $msg = "Vahvista sähköpostiosoitteesi alla olevasta linkistä:<br><br>";
-    $msg.= "<a href='http://$PALVELIN/$PALVELU/verification.php?token=$token'>Vahvista sähköpostiosoite</a>";
+    $msg.= "<a href='http://$PALVELIN/$PALVELU/$LINKKI_VERIFICATION?token=$token'>Vahvista sähköpostiosoite</a>";
     $msg.= "<br><br>t. $PALVELUOSOITE";
     $subject = "Vahvista sähköpostiosoite";
     $lahetetty = posti($email,$msg,$subject);

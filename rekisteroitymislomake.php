@@ -5,7 +5,6 @@ $title = 'Rekisteröityminen';
 $kentat_tiedosto = ['image'];
 //$css = 'rekisteroityminen.css';
 include "virheilmoitukset.php";
-$virheilmoitukset_json = json_encode($virheilmoitukset);
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php";
 include "posti.php";

@@ -70,9 +70,9 @@ function debuggeri_shutdown($parametrit = ""){
   $error = error_get_last();
   //var_export($error);
   if ($error and $error['type'] === E_ERROR){
-    $type = ($error) ? $error['type'] : "";   
+    $type = $error['type'];   
     $msg = date("Y-m-d H:i:s")." Ohjelman suoritus päättyi.";
-    $msg.= " Tappava virhe $type rivillä ".$error['line'].",tiedostossa ".$error['file'];     
+    $msg.= " Pysäyttävä virhe $type rivillä ".$error['line'].",tiedostossa ".$error['file'];     
     $path = $_SERVER['DOCUMENT_ROOT']."/debug_shutdown.txt";
     file_put_contents($path,$msg."\n", FILE_APPEND);
     echo "<p class='alert alert-danger'>Ohjelman suoritus päättyi virheeseen.</p>";
