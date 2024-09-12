@@ -1,7 +1,7 @@
 <?php
 $display = "d-none";
 $message = "";
-$success = "success";
+$success = "";
 $lisays = $lisattiin_token = $lahetetty = false;
 
 
@@ -41,7 +41,8 @@ function hae_kuva($kentta){
 
 
 if (isset($_POST['painike'])){
-    foreach ($_POST as $kentta => $arvo) {
+    /*foreach ($kentat as $kentta) {
+        $arvo = $_POST[$kentta] ?? "";
         if (in_array($kentta, $pakolliset) and empty($arvo)) {
             $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
             }
@@ -53,8 +54,10 @@ if (isset($_POST['painike'])){
                 if (is_array($arvo)) $$kentta = $arvo;
                 else $$kentta = $yhteys->real_escape_string(strip_tags(trim($arvo)));
                 } 
-            }
-        }
+            }    
+        }*/
+[$errors,$values] = validointi($kentat);  
+extract($values);
 
 if (empty($errors['password2']) and empty($errors['password'])) {
     if ($_POST['password'] != $_POST['password2']) {
@@ -75,6 +78,7 @@ if ($result->num_rows > 0) {
     $errors['email'] = $virheilmoitukset['email']['emailExistsError'];
     }
 
+/*
 $query = "SELECT 1 FROM users WHERE firstname = '$firstname' AND lastname = '$lastname'";
 $result = $yhteys->query($query);
 if ($result->num_rows > 0) {
@@ -82,6 +86,7 @@ if ($result->num_rows > 0) {
     $errors['firstname'] = $virheilmoitukset['firstname']['nameExistsError'];
     $errors['lastname'] = $virheilmoitukset['lastname']['nameExistsError'];
     }    
+*/
 }    
 
 debuggeri($errors);    
@@ -115,13 +120,13 @@ if ($lahetetty){
     $message = "Tiedot on tallennettu. Sinulle on lähetty antamaasi sähköpostiosoitteeseen ";
     $message.= "vahvistuspyyntö. Vahvista siinä olevasta linkistä sähköpostiosoitteesi.";
     $success = "success";
-    header("Location: ./rekisterointikuittaus.php?message=$message&success=$success");
-    exit;
+    //header("Location: ./rekisterointikuittaus.php?message=$message&success=$success");
+    //exit;
     }
 elseif ($lisays) {
-    /* Huom. oikeammin ohjataan vahvistuspyyntöön */
-    
+    /* Huom. oikeammin ohjataan vahvistuspyyntöön */    
     $message = "Tallennus onnistui!";
+    $success = "light";
     }
 else {
     $message = "Tallennus epäonnistui!";

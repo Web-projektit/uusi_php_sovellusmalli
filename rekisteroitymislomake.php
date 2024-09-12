@@ -2,6 +2,10 @@
 /* Huom. Tässä salasanakenttien täsmääminen tarkistetaan vain palvelimella. */
 $tietokanta = "neilikka";
 $title = 'Rekisteröityminen';
+$kentat = ['firstname','lastname','email','password','password2'];
+$kentat_suomi = ['etunimi','sukunimi','sähköpostiosoite','salasana','salasana'];
+$pakolliset = ['firstname','lastname','email','password','password2'];
+
 $kentat_tiedosto = ['image'];
 //$css = 'rekisteroityminen.css';
 include "virheilmoitukset.php";
@@ -11,6 +15,10 @@ include "posti.php";
 include "rekisterointi.php";
 ?>
 <div class="container"> 
+
+<?php 
+if ($success != "success") { ?>
+
 <form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate >
 <fieldset>
 <legend>Rekisteröityminen</legend>
@@ -85,12 +93,11 @@ include "rekisterointi.php";
 </div>
 </div>
 </div>
-
-
 <button name='painike' type="submit" class="mt-3 float-end btn btn-primary">Rekisteröidy</button>
 </fieldset>
-
 </form>
+
+<?php } ?>
 
 <div  id="ilmoitukset" class="alert alert-<?= $success ;?> alert-dismissible fade show <?= $display ?? ""; ?>" role="alert">
 <p><?= $message; ?></p>

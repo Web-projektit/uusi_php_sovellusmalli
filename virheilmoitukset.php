@@ -14,7 +14,7 @@ $kaannokset = array_combine($kentat,$kentat_suomi);
 $allowed_images = ['gif','png','jpg','jpeg'];
 //$kaannokset = ['firstname' => 'etunimi', 'lastname' => 'sukunimi', 'email' => 'sähköpostiosoite', 'mobilenumber' => 'matkapuhelinnumero', 'password' => 'salasana', 'password2' => 'salasana uudestaan'];
 //$kaannokset = $kentat_suomi[array_search('lastname',$kentat)]
-$w = "a-z-Z0-9";
+$w = "a-zA-Z0-9";
 $patterns['password'] = "/^.{12,}$/";
 $patterns['password2'] = $patterns['password'];
 /* Huom. Myös heittomerkki ja tavuviiva */
@@ -81,4 +81,30 @@ $virheilmoitukset['verificationRequiredErr'] = "Vahvista sähköpostiosoite ensi
 $virheilmoitukset['emailPwdErr'] = "Väärä käyttäjätunnus tai salasana";
 $virheilmoitukset['emailErr'] = "Sähköpostin lähetys epäonnistui, yritä myöhemmin uudelleen";
 $virheilmoitukset_json = json_encode($virheilmoitukset);
+
+function validointi($kentat){
+    $pakolliset = $GLOBALS['pakolliset'] ?? [];
+    $patterns = $GLOBALS['patterns'] ?? [];
+    $virheilmoitukset = $GLOBALS['virheilmoitukset'] ?? [];
+    $yhteys = $GLOBALS['yhteys'] ?? null;
+    $errors = [];
+    $values = [];
+    foreach ($kentat as $kentta) {
+        $values[$kentta] = "";
+        $arvo = $_POST[$kentta] ?? "";
+        if (in_array($kentta, $pakolliset) and empty($arvo)) {
+            $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
+            }
+        else {
+            if (!empty($kentta) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
+                $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
+                }
+            else {
+                if (is_array($arvo)) $values[$kentta] = $arvo;
+                else $values[$kentta] = $yhteys->real_escape_string(strip_tags(trim($arvo)));
+                } 
+            }    
+        }
+    return array($errors,$values);
+    }
 ?>
