@@ -92,6 +92,13 @@ function validointi($kentat){
     foreach ($kentat as $kentta) {
         $values[$kentta] = "";
         $arvo = $_POST[$kentta] ?? "";
+
+        /*
+         if ($kentta == 'email' and !filter_var($arvo, FILTER_VALIDATE_EMAIL)) {
+                $errors[$kentta] = $virheilmoitukset[$kentta]['typeMismatch'];
+                }
+        */
+
         if (in_array($kentta, $pakolliset) and empty($arvo)) {
             $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
             }
