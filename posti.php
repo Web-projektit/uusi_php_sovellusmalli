@@ -4,12 +4,11 @@ use PHPMailer\PHPMailer\Exception;
 require 'Exception.php';
 require 'PHPMailer.php';
 require 'SMTP.php';
-
 //$to = $EMAIL_ADMIN;
 
 function posti($emailTo,$msg,$subject){
-$emailFrom = "wohjelmointi@gmail.com";
-$emailFromName = "Ohjelmointikurssi";
+$emailFrom = EMAIL_FROM;
+$emailFromName = EMAIL_FROM_NAME;
 $emailToName = "";
 /* Generoidaan fatal error shutdown function-testaamiseksi. */
 /* throw new Error('Tästä seuraisi fatal error, sillä kutsu on try-catchin ulkopuolella.'); */

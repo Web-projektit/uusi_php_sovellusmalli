@@ -7,20 +7,8 @@ $ilmoitukset['okMsg'].= 'Tarkista sähköpostisi, ja siirry linkistä asettamaan
 
 /* ALOITUS */  
 if (isset($_POST['painike'])){
-   foreach ($_POST as $kentta => $arvo) {
-      if (in_array($kentta, $pakolliset) and empty($arvo)) {
-          $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
-          }
-      else {
-         if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
-            $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
-            }
-         else {
-            if (is_array($arvo)) $$kentta = $arvo;
-            else $$kentta = $yhteys->real_escape_string(strip_tags(trim($arvo)));
-            } 
-         }
-      }
+   [$errors,$values] = validointi($kentat);
+   extract($values);
    debuggeri($errors);
    if (!$errors){
       $lisattiin_token = false;

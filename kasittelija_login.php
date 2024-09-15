@@ -3,24 +3,24 @@
 $display = "d-none";
 $message = "";
 $success = "success";
+$sallittu = true;
 $ilmoitukset['errorMsg'] = 'Kirjautuminen epäonnistui. '; 
 debuggeri("POST:".var_export($_POST,true));
 
+$yrityskerrat = $_SESSION['yrityskerrat'] ?? 0;
+if ($yrityskerrat > YRITYSKERRAT) {
+   $message = "Liian monta yritystä. Yritä myöhemmin uudelleen.";
+   $display = "d-block";
+   $success = "danger";
+   $sallittu = false;
+   $_SESSION['yrityskerrat'] = 0;
+   }
+
+if ($sallittu) {   
 if (isset($_POST['painike'])){
-   foreach ($_POST as $kentta => $arvo) {
-      if (in_array($kentta, $pakolliset) and empty($arvo)) {
-          $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
-          }
-      else {
-         if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
-            $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
-            }
-         else {
-            if (is_array($arvo)) $$kentta = $arvo;
-            else $$kentta = $yhteys->real_escape_string(strip_tags(trim($arvo)));
-            } 
-         }
-      }
+   [$errors,$values] = validointi($kentat);
+   extract($values);
+
    $rememberme = isset($rememberme) ? true : false;
    if ($errors) debuggeri($errors);
    if (!$errors){
@@ -55,8 +55,11 @@ if (isset($_POST['painike'])){
             }
          else {
             $errors['password'] = $virheilmoitukset['emailPwdErr'];
+            $yrityskerrat++;
+            $_SESSION['yrityskerrat'] = $yrityskerrat;
             }
          }  
       }  
    }   
+}
 ?>

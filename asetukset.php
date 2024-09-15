@@ -9,6 +9,9 @@ $PALVELUOSOITE = "asiakaspalvelu@neilikka.fi";
 define("OLETUSSIVU","profiili.php");
 define("PROFIILIKUVAKANSIO","profiilikuvat");
 define("PROFIILIKUVAKOKO",5242880);
+define("EMAIL_FROM","wohjelmointi@gmail.com");
+define("EMAIL_FROM_NAME","Ohjelmointikurssi");
+define("YRITYSKERRAT",3);
 
 $DB = "neilikka";
 $LOCAL = in_array($_SERVER['REMOTE_ADDR'],array('127.0.0.1','REMOTE_ADDR' => '::1'));

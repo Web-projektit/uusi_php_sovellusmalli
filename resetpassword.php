@@ -1,14 +1,12 @@
 <?php 
 $title = 'Uusi salasana';
 //$css = 'kuvagalleria.css';
-$kentat = ['password','passoword2'];
+$kentat = ['password','password2'];
 $kentat_suomi = ['salasana','salasana'];
 $pakolliset = ['password','password2'];
 include "virheilmoitukset.php";
-$virheilmoitukset_json = json_encode($virheilmoitukset);
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php";
-include "db.php";
 include "kasittelija_resetpassword.php";
 ?>
 <div class="container"> 

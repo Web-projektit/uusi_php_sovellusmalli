@@ -10,10 +10,8 @@ $kentat = ['email'];
 $kentat_suomi = ['sähköpostiosoite'];
 $pakolliset = ['email'];
 include "virheilmoitukset.php";
-$virheilmoitukset_json = json_encode($virheilmoitukset);
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include('header.php');
-include('db.php');
 include('posti.php');
 include('kasittelija_forgotpassword.php');
 ?>

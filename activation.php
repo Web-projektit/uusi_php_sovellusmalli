@@ -8,7 +8,7 @@ if ($token) {
              LEFT JOIN users ON users_id = id WHERE s.token = '$token'";
     $result = $yhteys->query($query);
     if ($result->num_rows){
-        list($id,$is_active,$ika) = $result->fetch_row();
+        [$id,$is_active,$ika] = $result->fetch_row();
         if ($is_active == 0) {
             $query = "UPDATE users SET is_active = '1' WHERE id = '$id'";
             $result = $yhteys->query($query);

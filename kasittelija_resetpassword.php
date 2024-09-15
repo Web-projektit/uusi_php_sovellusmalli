@@ -28,44 +28,32 @@ else {
     }   
 
 if (isset($_POST['painike']) and !$message){
-    foreach ($_POST as $kentta => $arvo) {
-        if (in_array($kentta, $pakolliset) and empty($arvo)) {
-            $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
-            }
-        else {
-            if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
-                $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
-                }
-            else {
-                if (is_array($arvo)) $$kentta = $arvo;
-                else $$kentta = $yhteys->real_escape_string(strip_tags(trim($arvo)));
-                } 
+   [$errors,$values] = validointi($kentat);
+   extract($values);
+
+    if (empty($errors['password2']) and empty($errors['password'])) {
+        if ($_POST['password'] != $_POST['password2']) {
+            $errors['password2'] = $virheilmoitukset['password2']['customError'];
             }
         }
-
-if (empty($errors['password2']) and empty($errors['password'])) {
-    if ($_POST['password'] != $_POST['password2']) {
-        $errors['password2'] = $virheilmoitukset['password2']['customError'];
+        
+    debuggeri($errors);    
+    if (empty($errors)) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $query = "UPDATE users SET password = '$password' WHERE id = $users_id";
+        $result = $yhteys->query($query);
+        $muutettu = $yhteys->affected_rows;
         }
-    }
-    
-debuggeri($errors);    
-if (empty($errors)) {
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $query = "UPDATE users SET password = '$password' WHERE id = $users_id";
-    $result = $yhteys->query($query);
-    $muutettu = $yhteys->affected_rows;
-    }
 
-if ($muutettu) {
-    $query = "DELETE FROM resetpassword_tokens WHERE users_id = $users_id";
-    debuggeri($query);
-    $result = $yhteys->query($query);
-    $poistettu_token = $yhteys->affected_rows;
-    debuggeri("Poistettiin $poistettu_token token.");
-    /* Huom. tässä siirrytään suoraan kirjautumissivulle. */
-    header("location: login.php");
-    exit;
-    }
+    if ($muutettu) {
+        $query = "DELETE FROM resetpassword_tokens WHERE users_id = $users_id";
+        debuggeri($query);
+        $result = $yhteys->query($query);
+        $poistettu_token = $yhteys->affected_rows;
+        debuggeri("Poistettiin $poistettu_token token.");
+        /* Huom. tässä siirrytään suoraan kirjautumissivulle. */
+        header("location: login.php");
+        exit;
+        }
 }
 ?>

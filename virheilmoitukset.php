@@ -92,7 +92,8 @@ function validointi($kentat){
     foreach ($kentat as $kentta) {
         $values[$kentta] = "";
         $arvo = $_POST[$kentta] ?? "";
-
+        $apu =  (!empty($arvo) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo));
+        debuggeri("kentta:$kentta,arvo:$arvo,apu:$apu");
         /*
          if ($kentta == 'email' and !filter_var($arvo, FILTER_VALIDATE_EMAIL)) {
                 $errors[$kentta] = $virheilmoitukset[$kentta]['typeMismatch'];
@@ -103,7 +104,8 @@ function validointi($kentat){
             $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
             }
         else {
-            if (!empty($kentta) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
+            if (!empty($arvo) and isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
+                debuggeri("kentta:$kentta,arvo:$arvo,pattern:".$patterns[$kentta]);
                 $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
                 }
             else {
