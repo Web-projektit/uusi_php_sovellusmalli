@@ -88,26 +88,6 @@ if (insert_rememberme_token($user_id, $selector, $hash_validator, $expiry)) {
 }
 
 
-/*function secure_page() {
-if (!session_id()) session_start();
-$loggedIn = $_SESSION['loggedIn'] ?? false;   
-if (!$loggedIn || is_int($loggedIn)) {
-    $token = $_COOKIE['rememberme'] ?? '';
-    if ($token) {
-        $token = htmlspecialchars($token);
-        if ($user_id = token_is_valid($token)){
-            //if (session_regenerate_id()) {
-            //$loggedIn = hae_rooli($user_id);
-            $_SESSION['loggedIn'] = $user_id;
-            return $user_id;            }
-        }
-    $_SESSION['next_page'] = $_SERVER['PHP_SELF']; 
-    header("location: login.php");
-    exit;  
-    }
-return $loggedIn;
-};  */
-
 function secure_page($role = ''){
 $loggedIn = loggedIn();
 if (!$loggedIn || $role && $role != $loggedIn){
