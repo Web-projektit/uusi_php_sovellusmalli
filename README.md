@@ -3,7 +3,5 @@ Tässä on javascriptiä käyttävä navigointipalkki (header_js.php, navbar_js.
 
 Molemmissa käytetään flexboxia. 
 
-Alkuperäisessä (header_js.php, navbar_org.css) on käytössä float: left.
-
-Käyttäjän rooli tallennetaan loggedIn -session-muuttujaan. Sillä voi olla arve false,
+Käyttäjän rooli tallennetaan loggedIn -session-muuttujaan. Sillä voi olla arvo false,
 rooli tai evästeeseen koodattu user id. 
