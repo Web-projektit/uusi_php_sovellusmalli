@@ -5,8 +5,8 @@ include "header.php";
 include "db.php";
 
 $query = "SELECT * FROM auto";
-$tulokset = $yhteys->query($query);
-if ($tulokset->num_rows > 0) {
+$result = $yhteys->query($query);
+if ($result && $result->num_rows > 0) {
    while($rivi = $tulokset->fetch_assoc()) {
     echo "Rekisterinumero: $rivi[rekisterinro], merkki: $rivi[merkki], väri: $rivi[vari]<br>";
     }

@@ -110,7 +110,10 @@ function validointi($kentat){
                 }
             else {
                 if (is_array($arvo)) $values[$kentta] = $arvo;
-                else $values[$kentta] = $yhteys->real_escape_string(strip_tags(trim($arvo)));
+                else {
+                    $arvo = strip_tags(trim($arvo));
+                    $values[$kentta] = $yhteys->real_escape_string($arvo);
+                    }
                 } 
             }    
         }

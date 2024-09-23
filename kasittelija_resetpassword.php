@@ -10,7 +10,8 @@ $token = $_GET['token'] ?? '';
 if ($token) {
    /* Haetaan email */
    $date = date('Y-m-d');
-   $token = $yhteys->real_escape_string(strip_tags(trim($token)));
+   $arvo = strip_tags(trim($token));
+   $token = $yhteys->real_escape_string(strip_tags(trim($arvo)));
    $query = "SELECT users_id FROM resetpassword_tokens WHERE token = '$token' AND voimassa >= '$date'";
    debuggeri($query);
    $result = $yhteys->query($query);

@@ -10,6 +10,20 @@ catch (Throwable $e) {
    die("Virhe yhteyden muodostamisessa: " . $e->getMessage());
    }
 
+function mysqli_my_query($query) {
+   $yhteys = $GLOBALS['yhteys']; 
+   $result = false;
+   try {
+      $result = $yhteys->query($query); 
+      } 
+   catch (Exception $e) {
+      echo "<p class='alert alert-danger'>Virhe tietokantakyselyssä.</p>";
+      debuggeri("Virhe $yhteys->errno kyselyssa $query: " . $e->getMessage());
+      }
+   return $result;
+   }
+   
+
 function db_connect(){
 return $GLOBALS['yhteys'];   
 }

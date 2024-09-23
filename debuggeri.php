@@ -1,6 +1,5 @@
 <?php
-if (!defined('DEBUG')) define('DEBUG',true);
-
+// if (!defined("DEBUG")) define("DEBUG",true);
 function debug_error_handler($errno,$errstr,$errfile,$errline){
     if (!(error_reporting() & $errno)) {
         // This error code is not included in error_reporting, so let it fall

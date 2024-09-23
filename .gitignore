@@ -3,3 +3,5 @@ tunnukset.*
 *.txt
 !curl_testaus.txt
 profiilikuvat/*
+ymparistomuuttujat.json
+

@@ -41,21 +41,6 @@ function hae_kuva($kentta){
 
 
 if (isset($_POST['painike'])){
-    /*foreach ($kentat as $kentta) {
-        $arvo = $_POST[$kentta] ?? "";
-        if (in_array($kentta, $pakolliset) and empty($arvo)) {
-            $errors[$kentta] = $virheilmoitukset[$kentta]['valueMissing'];
-            }
-        else {
-            if (isset($patterns[$kentta]) and !preg_match($patterns[$kentta], $arvo)) {
-                $errors[$kentta] = $virheilmoitukset[$kentta]['patternMismatch'];
-                }
-            else {
-                if (is_array($arvo)) $$kentta = $arvo;
-                else $$kentta = $yhteys->real_escape_string(strip_tags(trim($arvo)));
-                } 
-            }    
-        }*/
 [$errors,$values] = validointi($kentat);  
 extract($values);
 
@@ -95,8 +80,10 @@ if (empty($errors)) {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $query = "INSERT INTO users (firstname, lastname, email, image, created, password) VALUES ('$firstname', '$lastname', '$email', $image, '$created', '$password')";
     debuggeri($query);
-    $result = $yhteys->query($query);
+    //$result = $yhteys->query($query);
+    $result = mysqli_my_query($query);
     $lisays = $yhteys->affected_rows;
+    debuggeri("lisays:$lisays");
     }
 
 if ($lisays) {  
