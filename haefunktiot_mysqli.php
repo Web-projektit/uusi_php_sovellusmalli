@@ -1,4 +1,16 @@
 <?php
+/* 
+ * PHP-tiedosto, joka hakee kaikki PHP-tiedostot annetusta hakemistosta ja sen alihakemistoista.
+ * Tiedostot käydään läpi ja etsitään PHP-kirjastofunktiot ja mysqli-metodikutsut.
+ * Löydetyt funktiot ja metodikutsut tallennetaan phpfunctions.txt-tiedostoon.
+ * 
+ * PHP-versio 8.2.12
+ * 
+ * @category  PHP
+ * @package   PHP_functions
+ * @license   PHP
+ * @link      PHP
+ */
 include 'debuggeri.php';
 echo "Haetaan PHP-funktiot ja mysqli-metodikutsut tiedostoista...<br>";
 
