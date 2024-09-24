@@ -19,7 +19,9 @@ function getPhpFiles($dir) {
         $filePath = $file->getPathname();
         if (pathinfo($filePath, PATHINFO_EXTENSION) === 'php' &&
             strpos($filePath, 'vendor') === false &&
-            strpos($filePath, 'faker') === false &&
+            strpos($filePath, 'fake') === false &&
+            strpos($filePath, ' copy') === false &&
+            strpos($filePath, 'haefunktiot') === false &&
             strpos($filePath, 'Exception') === false &&
             strpos($filePath, 'SMTP') === false &&
             strpos($filePath, 'PHPMailer') === false) {
@@ -36,6 +38,12 @@ function getPhpFunctions($file) {
     return array_unique($matches[1]);
 }
 
+
+function filterPhpLibraryFunctions($functions) {
+    $internalFunctions = get_defined_functions()['internal'];
+    return array_intersect($functions, $internalFunctions);
+}
+
 /**
  * Hakee kaikki $yhteys-> ja $result-> alkuiset metodikutsut annetusta tiedostosta.
  *
@@ -44,14 +52,13 @@ function getPhpFunctions($file) {
  */
 function getConnectionAndResultMethods($file) {
     $content = file_get_contents($file);
-    preg_match_all('/\$(yhteys|result)->(\w+)\s*\([^)]*\)/', $content, $matches);
+    preg_match_all('/\$(yhteys|result|stmt)->(\w+)\s*\([^)]*\)/', $content, $matches);
     return array_unique($matches[0]);
 }
 
 $dir = __DIR__; // Korvaa tämä polulla PHP-sovellusmallin hakemistoon
-echo "Aloitus, hakemisto: " . $dir . "\n";
-debuggeri("Aloitus, hakemisto: ".$dir);
-
+// echo "Aloitus, hakemisto: " . $dir . "\n";
+// debuggeri("Aloitus, hakemisto: ".$dir);
 $phpFiles = getPhpFiles($dir);
 $allFunctions = [];
 $connectionAndResultMethods = [];
@@ -60,9 +67,8 @@ $connectionAndResultMethods = [];
 file_put_contents('phpfunctions.txt', '');
 
 foreach ($phpFiles as $file) {
-    echo "Tiedosto: " . $file . "<br>";
-    debuggeri("Tiedosto: ".$file);
-
+    //echo "Tiedosto: " . $file . "<br>";
+    //debuggeri("Tiedosto: ".$file);
     $functions = getPhpFunctions($file);
     $phpLibraryFunctions = filterPhpLibraryFunctions($functions);
     foreach ($phpLibraryFunctions as $function) {
@@ -87,16 +93,15 @@ foreach ($allFunctions as $function => $files) {
     }
     $functionNumber++;
     }
-debuggeri("OUTPUT: ".$output);
+//debuggeri("OUTPUT: ".$output);
 //$output .= "\nKäytetyt mysqli-metodikutsut ja tiedostot:\n";
-$output.= "Käytetyt \$yhteys-> ja \$result-> metodikutsut ja tiedostot:\n";
+$output.= "\nKäytetyt \$yhteys->,\$result-> ja \$stmt-> metodikutsut ja tiedostot:\n";
 $functionNumber = 1;
-    
 foreach ($connectionAndResultMethods as $method => $files) {
     $output .= $functionNumber . ". " . $method . ":\n";
     foreach ($files as $file) {
         $output.= "   - " . $file . "\n"; // Käytetään non-breaking space -merkkejä
-    }
+        }
     $functionNumber++;
 }
 

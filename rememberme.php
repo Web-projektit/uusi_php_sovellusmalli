@@ -19,8 +19,9 @@ return null;
 function insert_rememberme_token(int $user_id, string $selector, string $hashed_validator, string $expiry) {
 $yhteys = db_connect();
 $query = "INSERT INTO rememberme_tokens(user_id, selector, hashed_validator, expiry) VALUES(?, ?, ?, ?)";
+$params = ['isss', $user_id, $selector, $hashed_validator, $expiry];
 $stmt = $yhteys->prepare($query);
-$stmt->bind_param('isss', $user_id,$selector,$hashed_validator,$expiry);
+$stmt->bind_param(...$params);
 $result = $stmt->execute();
 debuggeri("Lisättiin: $stmt->affected_rows rememberme_token.");
 return $result;
@@ -31,10 +32,12 @@ $id = $hashed_validator = $user_id = $expiry = null;
 $yhteys = db_connect();   
 $query = "SELECT id, selector, hashed_validator, user_id, expiry FROM rememberme_tokens
           WHERE selector = ? AND expiry >= now() LIMIT 1";
+$params = ['s', $selector];
 $stmt = $yhteys->prepare($query);
-$stmt->bind_param('s', $selector);
+$stmt->bind_param(...$params);
 $stmt->execute();
-$stmt->bind_result($id,$selector,$hashed_validator,$user_id,$expiry);
+$result_params = [&$id, &$selector, &$hashed_validator, &$user_id, &$expiry];
+$stmt->bind_result(...$result_params);
 $result = $stmt->fetch();
 return compact('id', 'selector', 'hashed_validator' ,'user_id', 'expiry');
 }
@@ -42,8 +45,9 @@ return compact('id', 'selector', 'hashed_validator' ,'user_id', 'expiry');
 function delete_rememberme_token(int $user_id) {
 $yhteys = db_connect();    
 $query = "DELETE FROM rememberme_tokens WHERE user_id = ?";
+$params = ['i', $user_id];
 $stmt = $yhteys->prepare($query);
-$stmt->bind_param('i', $user_id);
+$stmt->bind_param(...$params);
 $result = $stmt->execute();
 debuggeri("Poistettiin: $stmt->affected_rows rememberme_token.");
 return $result;
@@ -56,10 +60,12 @@ $users_id = $email = null;
 $yhteys = db_connect();
 $query = "SELECT users.id, email FROM users INNER JOIN rememberme_tokens ON user_id = users.id
           WHERE selector = ? AND expiry > now() LIMIT 1";
+$params = ['s', $tokens[0]];
 $stmt = $yhteys->prepare($query);
-$stmt->bind_param('s', $tokens[0]);
+$stmt->bind_param(...$params);
 $stmt->execute();
-$stmt->bind_result($users_id, $email);
+$result_params = [&$users_id, &$email];
+$stmt->bind_result(...$result_params);
 $result = $stmt->fetch();
 return compact('users_id','email');
 }
