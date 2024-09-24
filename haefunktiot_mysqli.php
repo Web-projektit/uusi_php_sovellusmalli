@@ -1,4 +1,6 @@
 <?php
+include 'debuggeri.php';
+echo "Haetaan PHP-funktiot ja mysqli-metodikutsut tiedostoista...<br>";
 
 /**
  * Hakee kaikki PHP-tiedostot annetusta hakemistosta ja sen alihakemistoista.
@@ -17,15 +19,29 @@ function getPhpFiles($dir) {
         $filePath = $file->getPathname();
         if (pathinfo($filePath, PATHINFO_EXTENSION) === 'php' &&
             strpos($filePath, 'vendor') === false &&
-            strpos($filePath, 'faker') === false &&
+            strpos($filePath, 'fake') === false &&
+            strpos($filePath, ' copy') === false &&
+            strpos($filePath, 'haefunktiot') === false &&
             strpos($filePath, 'Exception') === false &&
             strpos($filePath, 'SMTP') === false &&
             strpos($filePath, 'PHPMailer') === false) {
             $files[] = $filePath;
         }
     }
-    
     return $files;
+}
+
+
+function getPhpFunctions($file) {
+    $content = file_get_contents($file);
+    preg_match_all('/\b(\w+)\s*\(/', $content, $matches);
+    return array_unique($matches[1]);
+}
+
+
+function filterPhpLibraryFunctions($functions) {
+    $internalFunctions = get_defined_functions()['internal'];
+    return array_intersect($functions, $internalFunctions);
 }
 
 /**
@@ -36,11 +52,13 @@ function getPhpFiles($dir) {
  */
 function getConnectionAndResultMethods($file) {
     $content = file_get_contents($file);
-    preg_match_all('/\$(yhteys|result)->(\w+)\s*\([^)]*\)/', $content, $matches);
+    preg_match_all('/\$(yhteys|result|stmt)->(\w+)\s*\([^)]*\)/', $content, $matches);
     return array_unique($matches[0]);
 }
 
 $dir = __DIR__; // Korvaa tämä polulla PHP-sovellusmallin hakemistoon
+// echo "Aloitus, hakemisto: " . $dir . "\n";
+// debuggeri("Aloitus, hakemisto: ".$dir);
 $phpFiles = getPhpFiles($dir);
 $allFunctions = [];
 $connectionAndResultMethods = [];
@@ -49,6 +67,8 @@ $connectionAndResultMethods = [];
 file_put_contents('phpfunctions.txt', '');
 
 foreach ($phpFiles as $file) {
+    //echo "Tiedosto: " . $file . "<br>";
+    //debuggeri("Tiedosto: ".$file);
     $functions = getPhpFunctions($file);
     $phpLibraryFunctions = filterPhpLibraryFunctions($functions);
     foreach ($phpLibraryFunctions as $function) {
@@ -63,10 +83,9 @@ foreach ($phpFiles as $file) {
 
 ksort($allFunctions);    
 ksort($connectionAndResultMethods);
-
-$output = "Käytetyt \$yhteys-> ja \$result-> metodikutsut ja tiedostot:\n";
-$functionNumber = 1;
+debuggeri($allFunctions);
 $output = "Käytetyt PHP-kirjastofunktiot ja tiedostot:\n";
+$functionNumber = 1;
 foreach ($allFunctions as $function => $files) {
     $output .= $functionNumber . ". " . $function . ":\n";
     foreach ($files as $file) {
@@ -74,15 +93,15 @@ foreach ($allFunctions as $function => $files) {
     }
     $functionNumber++;
     }
-
-$output .= "\nKäytetyt mysqli-metodikutsut ja tiedostot:\n";
+//debuggeri("OUTPUT: ".$output);
+//$output .= "\nKäytetyt mysqli-metodikutsut ja tiedostot:\n";
+$output.= "\nKäytetyt \$yhteys->,\$result-> ja \$stmt-> metodikutsut ja tiedostot:\n";
 $functionNumber = 1;
-    
 foreach ($connectionAndResultMethods as $method => $files) {
     $output .= $functionNumber . ". " . $method . ":\n";
     foreach ($files as $file) {
-        $output .= "   - " . $file . "\n"; // Käytetään non-breaking space -merkkejä
-    }
+        $output.= "   - " . $file . "\n"; // Käytetään non-breaking space -merkkejä
+        }
     $functionNumber++;
 }
 

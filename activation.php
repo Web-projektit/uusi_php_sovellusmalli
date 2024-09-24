@@ -3,7 +3,8 @@
 $email_verified = $email_already_verified = $activation_error = "";
 $token = $_GET['token'] ?? "";
 if ($token) {
-    $token = $yhteys->real_escape_string($token); 
+    $arvo = $token;
+    $token = $yhteys->real_escape_string($arvo); 
     $query ="SELECT users_id,is_active,s.updated FROM signup_tokens s
              LEFT JOIN users ON users_id = id WHERE s.token = '$token'";
     $result = $yhteys->query($query);

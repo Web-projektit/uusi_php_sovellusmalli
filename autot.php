@@ -17,7 +17,8 @@ else {
 
 
 $merkki = "Toyota";  
-$merkki = $yhteys->real_escape_string(strip_tags($merkki));
+$arvo = strip_tags($merkki); 
+$merkki = $yhteys->real_escape_string($arvo);
 $query = "INSERT INTO auto (rekisterinro, merkki, vari) VALUES ('CES-267', '$merkki', 'sininen')";
 try {
     $yhteys->query($query); 
