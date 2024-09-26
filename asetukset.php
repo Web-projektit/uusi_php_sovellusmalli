@@ -31,7 +31,9 @@ if ($LOCAL) {
     $EMAIL_ADMIN = $admin_mail;
     }
 elseif (strpos($_SERVER['HTTP_HOST'],"azurewebsites") !== false){
-    define("DEBUG",false);
+    //define("DEBUG",false);
+    $debug = $_ENV['PHP_DEBUG'] ?? getenv('PHP_DEBUG');
+    define("DEBUG", $debug ? true : false);
     $db_server = $_ENV['MYSQL_HOSTNAME'] ?? getenv('MYSQL_HOSTNAME');
     $db_username = $_ENV['MYSQL_USERNAME'] ?? getenv('MYSQL_USERNAME');
     $db_password = $_ENV['MYSQL_PASSWORD'] ?? getenv('MYSQL_PASSWORD');

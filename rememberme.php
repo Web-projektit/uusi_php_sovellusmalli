@@ -115,6 +115,7 @@ if (!$loggedIn || is_int($loggedIn)) {
         $token = htmlspecialchars($token);
         if ($user_id = token_is_valid($token)) {
             // $loggedIn = hae_rooli($user_id);
+            //Huom. tarvitaanko tätä sijoitusta, eikö se jo testattu?
             $loggedIn = $user_id;
             $_SESSION['loggedIn'] = $loggedIn;
             }
