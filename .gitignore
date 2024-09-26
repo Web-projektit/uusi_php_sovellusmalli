@@ -2,6 +2,7 @@
 tunnukset.*
 *.txt
 !curl_testaus.txt
+!phpfunctions.txt
 profiilikuvat/*
 ymparistomuuttujat.json
 

@@ -1,0 +1,212 @@
+Käytetyt PHP-kirjastofunktiot ja tiedostot:
+1. array_combine:
+   - virheilmoitukset.php
+2. array_map:
+   - debuggeri.php
+3. array_reverse:
+   - debuggeri.php
+4. array_search:
+   - virheilmoitukset.php
+5. array_shift:
+   - debuggeri.php
+6. basename:
+   - debuggeri.php
+   - header.php
+7. bin2hex:
+   - kasittelija_forgotpassword.php
+   - rememberme.php
+   - virheilmoitukset.php
+8. ceil:
+   - kasittelija_login.php
+   - kayttajat.php
+9. compact:
+   - rememberme.php
+10. count:
+   - rememberme.php
+11. date:
+   - debuggeri.php
+   - kasittelija_forgotpassword.php
+   - kasittelija_login.php
+   - kasittelija_resetpassword.php
+   - rekisterointi.php
+   - rememberme.php
+12. debug_backtrace:
+   - debuggeri.php
+13. define:
+   - asetukset.php
+   - debuggeri.php
+14. defined:
+   - debuggeri.php
+15. error_get_last:
+   - debuggeri.php
+16. error_reporting:
+   - asetukset.php
+   - debuggeri.php
+17. explode:
+   - rememberme.php
+18. extract:
+   - kasittelija_forgotpassword.php
+   - kasittelija_login.php
+   - kasittelija_resetpassword.php
+   - rekisterointi.php
+19. file_exists:
+   - asetukset.php
+   - rekisterointi.php
+20. file_get_contents:
+   - posti.php
+21. file_put_contents:
+   - debuggeri.php
+22. filter_var:
+   - virheilmoitukset.php
+23. getenv:
+   - asetukset.php
+24. getimagesize:
+   - rekisterointi.php
+25. header:
+   - index.php
+   - kasittelija_login.php
+   - kasittelija_resetpassword.php
+   - login.php
+   - poistu.php
+   - rekisterointi.php
+   - rememberme.php
+26. htmlspecialchars:
+   - kayttajat.php
+   - rememberme.php
+27. implode:
+   - debuggeri.php
+28. in_array:
+   - asetukset.php
+   - kayttajat.php
+   - rekisterointi.php
+   - virheilmoitukset.php
+29. ini_get:
+   - poistu.php
+   - posti.php
+30. ini_set:
+   - header.php
+   - posti.php
+31. is_array:
+   - debuggeri.php
+   - virheilmoitukset.php
+32. is_int:
+   - poistu.php
+   - rememberme.php
+33. is_uploaded_file:
+   - rekisterointi.php
+34. json_encode:
+   - virheilmoitukset.php
+35. md5:
+   - rekisterointi.php
+36. move_uploaded_file:
+   - rekisterointi.php
+37. mysqli_error:
+   - kasittelija_forgotpassword.php
+   - kasittelija_login.php
+38. password_hash:
+   - kasittelija_resetpassword.php
+   - rekisterointi.php
+   - rememberme.php
+39. password_verify:
+   - kasittelija_login.php
+   - rememberme.php
+40. pathinfo:
+   - rekisterointi.php
+41. phpinfo:
+   - phpinfo.php
+42. preg_match:
+   - virheilmoitukset.php
+43. rand:
+   - rekisterointi.php
+44. random_bytes:
+   - kasittelija_forgotpassword.php
+   - rememberme.php
+   - virheilmoitukset.php
+45. register_shutdown_function:
+   - header.php
+46. rtrim:
+   - kayttajat.php
+47. session_destroy:
+   - poistu.php
+48. session_get_cookie_params:
+   - poistu.php
+49. session_id:
+   - header.php
+   - kasittelija_login.php
+   - poistu.php
+   - rememberme.php
+50. session_name:
+   - poistu.php
+51. session_start:
+   - header.php
+   - kasittelija_login.php
+   - poistu.php
+   - rememberme.php
+52. set_time_limit:
+   - posti.php
+53. setcookie:
+   - poistu.php
+   - rememberme.php
+54. strip_tags:
+   - autot.php
+   - kasittelija_resetpassword.php
+   - virheilmoitukset.php
+55. strpos:
+   - asetukset.php
+56. strtolower:
+   - rekisterointi.php
+57. strtotime:
+   - kasittelija_forgotpassword.php
+   - kasittelija_login.php
+58. time:
+   - kasittelija_login.php
+   - poistu.php
+   - rekisterointi.php
+   - rememberme.php
+59. trim:
+   - kasittelija_resetpassword.php
+   - virheilmoitukset.php
+60. ucfirst:
+   - virheilmoitukset.php
+61. var_export:
+   - debuggeri.php
+   - kasittelija_login.php
+   - rekisterointi.php
+
+Käytetyt $yhteys->,$result-> ja $stmt-> metodikutsut ja tiedostot:
+1. $result->fetch_all(MYSQLI_ASSOC):
+   - kayttajat.php
+2. $result->fetch_row():
+   - activation.php
+   - kasittelija_forgotpassword.php
+   - kasittelija_login.php
+   - kasittelija_resetpassword.php
+   - kayttajat.php
+   - rememberme.php
+3. $stmt->bind_param(...$params):
+   - rememberme.php
+4. $stmt->bind_result(...$result_params):
+   - rememberme.php
+5. $stmt->execute():
+   - rememberme.php
+6. $stmt->fetch():
+   - rememberme.php
+7. $yhteys->prepare($query):
+   - rememberme.php
+8. $yhteys->query($query):
+   - activation.php
+   - autot.php
+   - db.php
+   - kasittelija_forgotpassword.php
+   - kasittelija_login.php
+   - kasittelija_resetpassword.php
+   - kayttajat.php
+   - rekisterointi.php
+   - rememberme.php
+9. $yhteys->real_escape_string($arvo):
+   - activation.php
+   - autot.php
+   - kasittelija_resetpassword.php
+   - virheilmoitukset.php
+10. $yhteys->set_charset("utf8"):
+   - db.php
