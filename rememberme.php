@@ -114,9 +114,12 @@ if (!$loggedIn || is_int($loggedIn)) {
     if ($token = $_COOKIE['rememberme'] ?? '') {
         $token = htmlspecialchars($token);
         if ($user_id = token_is_valid($token)) {
-            // $loggedIn = hae_rooli($user_id);
-            //Huom. tarvitaanko tätä sijoitusta, eikö se jo testattu?
-            $loggedIn = $user_id;
+            $loggedIn = hae_rooli($user_id);
+            // Huom. nyt user_id ei sisälly $loggedIn:iin,
+            // vaan rooli, joten kirjautuminen rememberme-evästeellä
+            // sallii käytön vähintään session-muuttujan keston ajan 
+            // vaikka eväste vanhenisi tänä aikana.
+            // $loggedIn = $user_id;
             $_SESSION['loggedIn'] = $loggedIn;
             }
         }
