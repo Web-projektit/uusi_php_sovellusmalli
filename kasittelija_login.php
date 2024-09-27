@@ -31,7 +31,7 @@ if (isset($_POST['painike'])){
    [$errors,$values] = validointi($kentat);
    extract($values);
 
-   $rememberme = isset($rememberme) ? true : false;
+   $rememberme = $rememberme ?? false;
    if ($errors) debuggeri($errors);
    if (!$errors){
       $query = "SELECT users.id,password,is_active,name FROM users LEFT JOIN roles ON role = roles.id WHERE email = '$email'";

@@ -13,17 +13,17 @@ if ($user_id = loggedIn() === false) {
     exit;
     }*/
 include "debuggeri.php";
-debuggeri(__FUNCTION__.",session ja cookie");    
+debuggeri(__FILE__.",session ja cookie:");    
 debuggeri($_SESSION);    
 debuggeri($_COOKIE);    
 // $user_id = $_SESSION['user_id'] ?? '';
 if (is_int($user_id)) {
-    include_once('db.php');
     delete_rememberme_token($user_id);
     }
 if (isset($_COOKIE['rememberme'])) {
     unset($_COOKIE['rememberme']);
-    setcookie('rememberme', null, -1, "", "", false, true);
+    //setcookie('rememberme', null, -1, "", "", false, true);
+    setcookie('rememberme', '', time() - 3600, "/", "", false, true);
     }
 $_SESSION = [];
 /* If it's desired to kill the session, also delete the session cookie.
