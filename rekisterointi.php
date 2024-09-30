@@ -5,10 +5,10 @@ $success = "";
 $lisays = $lisattiin_token = $lahetetty = false;
 
 
-function hae_kuva($kentta){   
+function hae_kuva($kentat_tiedosto){   
 /* Huom. foreach-silmukka on tässä malliksi, ei valmis.
    Nimen tarkistukseen ei ole tässä koodia. */
-    $kentat_tiedosto = $GLOBALS['kentat_tiedosto'];   
+    // $kentat_tiedosto = $GLOBALS['kentat_tiedosto'];   
     $allowed_images = $GLOBALS['allowed_images'];
     $virhe = false;   
     $image = "";
@@ -83,6 +83,9 @@ if (empty($errors)) {
     //$result = $yhteys->query($query);
     $result = mysqli_my_query($query);
     $lisays = $yhteys->affected_rows;
+
+    // $user_id = $yhteys->insert_id;
+    // Huom. Jos lisäys ei onnistunut, mahdollinen profiilikuva tulisi poistaa.
     debuggeri("lisays:$lisays");
     }
 

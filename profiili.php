@@ -5,11 +5,56 @@ include "rememberme.php";
 $loggedIn = secure_page();
 $title = 'Profiili';
 $css = 'profiili.css';
+$kentat = [];
+$kentat_suomi = [];
+$pakolliset = [];
+$kentat_tiedosto = ['image'];
+include "virheilmoitukset.php";
+echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php"; 
+include "kasittelija_profiili.php";
 ?>
 <div class="container">
-<!-- Kuva ja perustiedot -->
+<!-- Kuva ja perustiedot 
 <img src="https://cdn.pixabay.com/photo/2019/07/02/03/10/highland-cattle-4311375_1280.jpg" alt="Profiilikuva" class="profile-image">
+-->
+
+<form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate >
+<fieldset>
+<legend>Profiili</legend>
+
+<div class="row">
+<label for="firstname" class="col-sm-4 form-label">Etunimi</label>
+<div class="col-sm-8">
+<input pattern="<?= pattern("firstname"); ?>" type="text" class="mb-1 form-control <?= is_invalid('firstname'); ?>" name="firstname" id="firstname" 
+       placeholder="Etunimi" value="<?= arvo("firstname"); ?>" 
+       required autofocus> 
+<div class="invalid-feedback">
+<?= $errors['firstname'] ?? ""; ?>    
+</div>
+</div>    
+</div>
+
+
+
+<div class="row mb-sm-1">
+<label for="image" class="form-label mb-0 col-sm-4">Kuva</label>
+<div class="col-sm-8">
+<input id="image" name="image" type="file" accept="image/*" pattern="<?= pattern('image'); ?>" class="form-control <?= is_invalid('image'); ?>" placeholder="kuva"></input>
+<div class="invalid-feedback">
+<?= $errors['image'] ?? ""; ?>
+</div>
+<div class="previewDiv mt-1 col-sm-8" id="previewDiv">
+<img class="previewImage" src="<?= $kuvatiedosto; ?>" id="previewImage" width="" height="">
+<button type="button" class="btn btn-outline-secondary btn-sm float-end mt-1" onclick="tyhjennaKuva('image')">Poista</button>
+</div>
+</div>
+</div>
+
+</fieldset>
+<button type="submit" name="painike" class="btn btn-primary">Tallenna</button>
+</form>
+
 <div class="info-section">
     <div class="info-title">Nimi:</div>
     <div>Matti Meikäläinen</div>
@@ -34,5 +79,12 @@ include "header.php";
     <li>Lukeminen</li>
     </ul>
 </div>
+
+
+<div  id="ilmoitukset" class="alert alert-<?= $success ;?> alert-dismissible fade show <?= $display ?? ""; ?>" role="alert">
+<p><?= $message; ?></p>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 </div>
 <?php include "footer.html"; ?>

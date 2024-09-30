@@ -35,6 +35,7 @@ function kaannos($kentta){
     }
     
 function validationMessages($kentat){   
+    $validationMessage = [];
     foreach ($kentat as $input) {
         $kentta = kaannos($input);   
         $validationMessage[$input]['customError'] = "Virheellinen $kentta";
@@ -60,8 +61,11 @@ function validationMessages($kentat){
         }
     
     function arvo($kentta) {
+        /* Lisätty profiilia varten mahdollinen tietokantarivin kentän arvo. */
         $error = $GLOBALS['errors'][$kentta] ?? false;
-        return ($error) ? "" : $_POST[$kentta] ?? "";
+        $row = $GLOBALS['row'] ?? [];
+        $arvo = $_POST[$kentta] ?? $row[$kentta] ?? "";
+        return ($error) ? "" : $arvo ?? "";
         }   
         
     function is_invalid($kentta) {        
