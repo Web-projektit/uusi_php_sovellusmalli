@@ -1,6 +1,8 @@
 <?php 
 if (!session_id()) session_start();
 ini_set('default_charset', 'utf-8');
+ini_set('upload_max_filesize', '10M');
+
 ?>
 <!DOCTYPE html>
 <html lang="fi">
