@@ -61,6 +61,7 @@ function validationMessages($kentat){
         }
     
     function arvo($kentta) {
+        /* Lisätty profiilia varten mahdollinen tietokantarivin kentän arvo. */
         $error = $GLOBALS['errors'][$kentta] ?? false;
         $row = $GLOBALS['row'] ?? [];
         $arvo = $_POST[$kentta] ?? $row[$kentta] ?? "";
