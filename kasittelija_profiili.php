@@ -11,6 +11,7 @@ unset($_SESSION['message']);
 unset($_SESSION['success']);
 unset($_SESSION['current_image']);
 unset($_SESSION['kuvatiedosto']); 
+debuggeri("user_id:$user_id", "current_image:$current_image", "kuvatiedosto:$kuvatiedosto");
 
 function poista_tunniste($image){
 // Poistaa alaviivan ja sen perässä olevan tunnisteen ennen tiedostotyyppiä
