@@ -79,4 +79,4 @@ echo $num_records . " fake user records inserted into database.<br> ";
 echo "Total number of records in database: $rows<br>";
 ?>
 </div>
-<?php include "footer.html"; ?>
+<?php include "footer.php"; ?>

@@ -3,28 +3,29 @@
 $display = "d-none";
 $message = "";
 $success = "success";
-$sallittu = true;
+
 $ilmoitukset['errorMsg'] = 'Kirjautuminen epäonnistui. '; 
 debuggeri("POST:".var_export($_POST,true));
-$_SESSION['yritysaika'] ??= date("Y-m-d H:i:s");
-$_SESSION['yrityskerrat'] ??= 0;
-$yrityskerrat = $_SESSION['yrityskerrat'];
-$apu1 = strtotime($_SESSION['yritysaika']) + YRITYSKERRAT_AIKARAJA * 60 > time();
-$apu2 = strtotime($_SESSION['yritysaika']) + YRITYSKERRAT_AIKARAJA * 60;
-$apu3 = time();
-debuggeri("yrityskerrat: $yrityskerrat,yritysaika: {$_SESSION['yritysaika']}");  
-debuggeri("apu: $apu1, apu2: " . date("Y-m-d H:i:s",$apu2) . ",apu3: " . date("Y-m-d H:i:s",$apu3));
-/* Huom. tämä on kesken */
+$sallittu = true;
+$eston_kesto = YRITYSKERRAT_AIKARAJA * 60;
+$_SESSION['epaonnistuneet_yritykset'] ??= 0;
+$_SESSION['viimeinen_yritys_aika'] ??= 0;
 
-if ($yrityskerrat > YRITYSKERRAT and strtotime($_SESSION['yritysaika']) + YRITYSKERRAT_AIKARAJA * 60 > time()) {
-   //$aikaraja = YRITYSKERRAT_AIKARAJA;
-   $aikajaljella = ceil(YRITYSKERRAT_AIKARAJA - (time() - strtotime($_SESSION['yritysaika']))/60);
-   $message = "Liian monta yritystä. Yritä uudelleen $aikajaljella min päästä.";
-   $display = "d-block";
-   $success = "danger";
-   $sallittu = false;
-   }
-
+// Tarkistetaan, onko käyttäjä estetty
+if ($_SESSION['epaonnistuneet_yritykset'] >= YRITYSKERRAT) {
+   $aika_viimeisesta_yrityksesta = time() - $_SESSION['viimeinen_yritys_aika'];
+   if ($aika_viimeisesta_yrityksesta < $eston_kesto) {
+       $jäljellä_oleva_aika = $eston_kesto - $aika_viimeisesta_yrityksesta;
+       $message = "Liian monta epäonnistunutta yritystä. Odota " . ceil($jäljellä_oleva_aika / 60) . " minuutti(a) ennen seuraavaa yritystä.";
+       $display = "d-block";
+       $success = "danger";
+       $sallittu = false;  
+       } 
+   else {
+      // Nollataan epäonnistuneet yritykset eston jälkeen
+      $_SESSION['epaonnistuneet_yritykset'] = 0;
+      }
+   }   
 
 if ($sallittu) {   
 if (isset($_POST['painike'])){
@@ -49,7 +50,8 @@ if (isset($_POST['painike'])){
          if (password_verify($password, $password_hash)){
             if ($is_active){
                if (!session_id()) session_start();
-               $_SESSION["loggedIn"] = "$role";
+               $_SESSION['epaonnistuneet_yritykset'] = 0; 
+               $_SESSION["loggedIn"] = $role;
                $_SESSION["user_id"] = $id;
                if ($rememberme) rememberme($id);
                if (isset($_SESSION['next_page'])){
@@ -57,7 +59,6 @@ if (isset($_POST['painike'])){
                   unset($_SESSION['next_page']);
                   }
                else $location = OLETUSSIVU;   
-               $_SESSION['yrityskerrat'] = 0;
                header("location: $location");
                exit;
                }      
@@ -67,9 +68,10 @@ if (isset($_POST['painike'])){
             }
          else {
             $errors['password'] = $virheilmoitukset['emailPwdErr'];
-            $_SESSION['yrityskerrat'] = $yrityskerrat % (YRITYSKERRAT + 1) + 1; 
-            $_SESSION['yritysaika'] = date("Y-m-d H:i:s");
-            $_SESSION['odotus'] = false;
+            // $_SESSION['odotus'] = false;
+             // Kirjautuminen epäonnistui
+            $_SESSION['epaonnistuneet_yritykset'] += 1;
+            $_SESSION['viimeinen_yritys_aika'] = time();
             }
          }  
       }  

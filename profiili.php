@@ -5,14 +5,23 @@ include "rememberme.php";
 $loggedIn = secure_page();
 $title = 'Profiili';
 $css = 'profiili.css';
-$kentat = [];
-$kentat_suomi = [];
-$pakolliset = [];
+
+$tietokanta = "neilikka";
+/*$kentat = ['firstname','lastname','email','password','password2'];
+$kentat_suomi = ['etunimi','sukunimi','sähköpostiosoite','salasana','salasana'];
+$pakolliset = ['firstname','lastname','email','password','password2'];*/
 $kentat_tiedosto = ['image'];
+
+$kentat = ['firstname','current_image'];
+$kentat_suomi = ['etunimi','kuva'];
+$pakolliset = ['firstname'];
 include "virheilmoitukset.php";
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php"; 
 include "kasittelija_profiili.php";
+/* Huom. current_image sisältää profiilikuvatiedoston 
+   alkuperäisen nimen. Tässä profiilia tallennettaessa vanha
+   kuva poistetaan ja uusi tallennetaan tilalle. */
 ?>
 <div class="container">
 <!-- Kuva ja perustiedot 
@@ -36,7 +45,7 @@ include "kasittelija_profiili.php";
 </div>
 
 
-
+<input type="hidden" id="current_image" name="current_image" value="<?= $current_image; ?>"></input>
 <div class="row mb-sm-1">
 <label for="image" class="form-label mb-0 col-sm-4">Kuva</label>
 <div class="col-sm-8">
@@ -52,8 +61,7 @@ include "kasittelija_profiili.php";
 </div>
 
 </fieldset>
-<button type="submit" name="painike" class="btn btn-primary">Tallenna</button>
-</form>
+<input type="submit" name="painike" class="btn btn-primary" value="Tallenna"></input>   
 
 <div class="info-section">
     <div class="info-title">Nimi:</div>
@@ -87,4 +95,4 @@ include "kasittelija_profiili.php";
 </div>
 
 </div>
-<?php include "footer.html"; ?>
+<?php include "footer.php"; ?>

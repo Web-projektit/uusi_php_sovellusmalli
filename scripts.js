@@ -23,6 +23,7 @@ const tyhjennaKuva = element => {
   document.querySelector('#'+element).value = '';
   document.querySelector('#'+element+ '~ .previewDiv .previewImage').src = '';
   document.querySelector('#'+element+ '~ .previewDiv').classList.add('d-none');
+  document.querySelector('#current_image').value = '';
   }
 
 const previewImage = document.querySelector('#previewImage');
@@ -48,7 +49,7 @@ if (previewImage){
 //document.querySelector("#tallenna").addEventListener("click", menutoggle)
 //document.querySelector("#tallenna").onclick = menutoggle;
 
-/* Bootstrap-muotoiltujen ilmoitusten poisto */
+/* Bootstrap-muotoillun ilmoituksen poisto */
 const ilmoitukset = document.querySelector("#ilmoitukset");
 document.querySelectorAll("input,select,textarea").forEach( el => {
   el.addEventListener("click", e => {
@@ -58,11 +59,11 @@ document.querySelectorAll("input,select,textarea").forEach( el => {
   });
 });
 
-document.querySelector("input").onchange = () => {
+/*document.querySelector("input").onchange = () => {
   if (!document.querySelector("#ilmoitukset").classList.contains("d-none")) {
     document.querySelector("#ilmoitukset").classList.add("d-none");
   }
-};
+};*/
 
 /*  Lomakkeiden validointi Bootstrap-muotoilulla */
 // Example starter JavaScript for disabling form submissions if there are invalid fields

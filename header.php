@@ -64,9 +64,14 @@ switch ($loggedIn) {
   case true:
     echo "<a class='".active('profiili',$active). "' href='profiili.php'>Profiili</a>";
     /* Huom. tästä oikeaan laitaan. */
-    echo "<a class='nav-suojaus ".active('phpinfo',$active). "' href='phpinfo.php'>phpinfo</a>";
-    echo "<a class='".active('fake',$active). "' href='fake.php'>fake</a>";
-    echo '<a href="poistu.php">Poistu</a>';
+    if ($loggedIn === 'admin'){
+       echo "<a class='nav-suojaus ".active('phpinfo',$active). "' href='phpinfo.php'>phpinfo</a>";
+       echo "<a class='".active('fake',$active). "' href='fake.php'>fake</a>";
+       echo '<a class="" href="poistu.php">Poistu</a>';
+      }
+    else {
+       echo '<a class="nav-suojaus" href="poistu.php">Poistu</a>';
+      }  
     break;
   default:
     echo "<a class='nav-suojaus ".active('login',$active)."' href='login.php'>Kirjautuminen</a>";

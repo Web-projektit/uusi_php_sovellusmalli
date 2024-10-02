@@ -37,4 +37,4 @@ catch (Exception $e) {
 <div class="container"> 
 
 </div>
-<?php include "footer.html"; ?>
+<?php include "footer.php"; ?>
