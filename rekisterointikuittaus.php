@@ -16,4 +16,4 @@ if (isset($_GET['message']) && isset($_GET['success'])) {
     </div>
 <?php } ?>
 </div>
-<?php include "footer.html"; ?>
+<?php include "footer.php"; ?>

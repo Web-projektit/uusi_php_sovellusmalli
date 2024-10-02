@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
-$PALVELIN = $_SERVER['HTTP_HOST'];
-$PALVELU = "projektit_PHP/php_sovellusmalli";
+$PALVELIN = $_SERVER['HTTP_HOST']."/";
 $LINKKI_RESETPASSWORD = "resetpassword.php";
 $LINKKI_VERIFICATION = "verification.php";
 $PALVELUOSOITE = "asiakaspalvelu@neilikka.fi";
@@ -25,6 +24,7 @@ if ($LOCAL) {
     else {
         die("Tiedostoa ei löydy, ota yhteys ylläpitoon.");
         } 
+    $PALVELU = "projektit_PHP/php_sovellusmalli/";    
     $db_server = $db_server_local;
     $db_username = $db_username_local; 
     $db_password = $db_password_local;
@@ -34,6 +34,7 @@ elseif (strpos($_SERVER['HTTP_HOST'],"azurewebsites") !== false){
     //define("DEBUG",false);
     $debug = $_ENV['PHP_DEBUG'] ?? getenv('PHP_DEBUG');
     define("DEBUG", $debug ? true : false);
+    $PALVELU = "";
     $db_server = $_ENV['MYSQL_HOSTNAME'] ?? getenv('MYSQL_HOSTNAME');
     $db_username = $_ENV['MYSQL_USERNAME'] ?? getenv('MYSQL_USERNAME');
     $db_password = $_ENV['MYSQL_PASSWORD'] ?? getenv('MYSQL_PASSWORD');

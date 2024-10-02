@@ -27,7 +27,7 @@ if (isset($_POST['painike'])){
          //$voimassa = date('Y-m-d', strtotime("+1 day"));
          $voimassa = date('Y-m-d');
          $msg = "Aseta uusi salasana alla olevasta linkistä:<br><br>";
-         $msg.= "<a href='http://$PALVELIN/$PALVELU/$LINKKI_RESETPASSWORD?token=$token'>Uusi salasana</a><br>";
+         $msg.= "<a href='http://$PALVELIN".$PALVELU."$LINKKI_RESETPASSWORD?token=$token'>Uusi salasana</a><br>";
          $subject = "Salasanasi";
          $lahetys = posti($email,$msg,$subject);
          if ($lahetys) {

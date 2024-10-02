@@ -6,4 +6,4 @@ include "header.php";
 <div class="container"> 
 
 </div>
-<?php include "footer.html"; ?>
+<?php include "footer.php"; ?>
