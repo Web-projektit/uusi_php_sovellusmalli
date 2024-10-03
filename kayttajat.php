@@ -4,7 +4,7 @@ include "db.php";
 include "rememberme.php";
 $loggedIn = secure_page('admin');
 $title = 'Käyttäjähallinta';
-$css = 'Kayttajat.css';
+$css = 'kayttajat.css';
 include "header.php";
 
 function puhdista($arvo){

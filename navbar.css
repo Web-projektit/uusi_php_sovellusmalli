@@ -83,8 +83,12 @@ nav .close {
 }
 
 @media (min-width:767px) {
-  nav {flex-direction: row;}
-  nav .nav-suojaus {margin-left: auto;}
+  nav {
+    flex-direction: row;
+    }
+  nav .nav-suojaus {
+    margin-left: auto; 
+    }
   nav a:not(:first-child) {display: inline; padding: 14px 16px;}    
   nav .icon, #toggle-btn:checked ~ .close {display: none;}
 }
