@@ -9,6 +9,7 @@ if ($loggedIn = loggedIn()) {
     }
 $title = 'Kirjautuminen';
 $css = 'login.css';
+$js = 'login.js';
 /* Lomakkeen kentät, nimet samat kuin users-taulussa. */
 $kentat = ['email','password','rememberme'];
 $kentat_suomi = ['sähköpostiosoite','salasana','muista minut'];

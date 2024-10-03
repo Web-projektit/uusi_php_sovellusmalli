@@ -140,6 +140,7 @@ if (isset($_POST['painike'])){
 
 elseif ($user_id) {
    $query = "SELECT * FROM users WHERE id = $user_id";
+   debuggeri($query);
    $result = $yhteys->query($query);
    if (!$result) die("Tietokantayhteys ei toimi: ".mysqli_error($connection));
    if ($row = $result->fetch_array(MYSQLI_ASSOC)) {
