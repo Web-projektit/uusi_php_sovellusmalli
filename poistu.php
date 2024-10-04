@@ -4,7 +4,7 @@ include "db.php";
 include "rememberme.php";
 /* Sessionin purkaminen */
 if (!session_id()) session_start();
-if ($user_id = loggedIn() === false) {
+if ($loggedIn = loggedIn() === false) {
     header("location: login.php");
     exit;
     }
@@ -16,11 +16,12 @@ include "debuggeri.php";
 debuggeri(__FILE__.",session ja cookie:");    
 debuggeri($_SESSION);    
 debuggeri($_COOKIE);    
-// $user_id = $_SESSION['user_id'] ?? '';
-if (is_int($user_id)) {
-    delete_rememberme_token($user_id);
-    }
+$user_id = $_SESSION['user_id'] ?? '';
+//if (is_int($user_id)) {
+//    delete_rememberme_token($user_id);
+//    }
 if (isset($_COOKIE['rememberme'])) {
+    delete_rememberme_token($user_id);
     unset($_COOKIE['rememberme']);
     //setcookie('rememberme', null, -1, "", "", false, true);
     setcookie('rememberme', '', time() - 3600, "/", "", false, true);
