@@ -69,12 +69,15 @@ if (isset($_POST['painike'])){
          else {
             $errors['password'] = $virheilmoitukset['emailPwdErr'];
             // $_SESSION['odotus'] = false;
-             // Kirjautuminen epäonnistui
-            $_SESSION['epaonnistuneet_yritykset'] += 1;
-            $_SESSION['viimeinen_yritys_aika'] = time();
+
             }
          }  
       }  
-   }   
+   // Kirjautuminen epäonnistui
+   if ($errors) {
+      $_SESSION['epaonnistuneet_yritykset'] += 1;
+      $_SESSION['viimeinen_yritys_aika'] = time();
+      }   
+   }
 }
 ?>
