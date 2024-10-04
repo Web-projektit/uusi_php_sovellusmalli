@@ -4,5 +4,6 @@ tunnukset.*
 !curl_testaus.txt
 !phpfunctions.txt
 profiilikuvat/*
+!profiilikuvat/default.png
 ymparistomuuttujat.json
 
