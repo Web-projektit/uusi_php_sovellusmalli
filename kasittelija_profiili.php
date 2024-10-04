@@ -176,4 +176,6 @@ else {
    }
 debuggeri("current_image:$current_image");
 debuggeri("kuvatiedosto:$kuvatiedosto");
+//ob_end_flush();
+
 ?>
