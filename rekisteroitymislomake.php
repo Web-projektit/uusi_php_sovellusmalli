@@ -8,11 +8,14 @@ $pakolliset = ['firstname','lastname','email','password','password2'];
 
 $kentat_tiedosto = ['image'];
 //$css = 'rekisteroityminen.css';
+include "debuggeri.php";
+include "asetukset.php";
+include "db.php";
 include "virheilmoitukset.php";
-echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
-include "header.php";
 include "posti.php";
 include "rekisterointi.php";
+echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
+include "header.php";
 ?>
 <div class="container"> 
 

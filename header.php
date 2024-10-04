@@ -25,8 +25,8 @@ ini_set('upload_max_filesize', '10M');
 include_once "debuggeri.php";
 /* Huom. suojatulla sivulla on asetukset,db,rememberme.php; */
 if (!isset($loggedIn)){
-  require "asetukset.php";
-  include "db.php";
+  require_once "asetukset.php";
+  include_once "db.php";
   include "rememberme.php";
   $loggedIn = loggedIn();
   }

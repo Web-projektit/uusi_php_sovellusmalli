@@ -9,11 +9,14 @@ $title = "Unohtunut salasana";
 $kentat = ['email'];
 $kentat_suomi = ['sähköpostiosoite'];
 $pakolliset = ['email'];
+include "asetukset.php";
+include "debuggeri.php";
+include "db.php";
 include "virheilmoitukset.php";
-echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
-include('header.php');
 include('posti.php');
 include('kasittelija_forgotpassword.php');
+echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
+include('header.php');
 ?>
 <div class="container">
 
