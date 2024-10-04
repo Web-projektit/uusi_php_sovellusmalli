@@ -77,6 +77,7 @@ if (isset($_POST['painike'])){
    if ($errors) {
       $_SESSION['epaonnistuneet_yritykset'] += 1;
       $_SESSION['viimeinen_yritys_aika'] = time();
+      debuggeri("Epäonnistuneet yritykset: ".$_SESSION['epaonnistuneet_yritykset']);
       }   
    }
 }
