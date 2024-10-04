@@ -1,5 +1,7 @@
 <?php 
+// ob_start();
 include "asetukset.php";
+include "debuggeri.php";
 include "db.php";
 include "rememberme.php";
 $loggedIn = secure_page();
@@ -16,9 +18,9 @@ $kentat = ['firstname','current_image'];
 $kentat_suomi = ['etunimi','kuva'];
 $pakolliset = ['firstname'];
 include "virheilmoitukset.php";
+include "kasittelija_profiili.php";
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php"; 
-include "kasittelija_profiili.php";
 /* Huom. current_image sisältää profiilikuvatiedoston 
    alkuperäisen nimen. Tässä profiilia tallennettaessa vanha
    kuva poistetaan ja uusi tallennetaan tilalle. */
