@@ -49,11 +49,14 @@ if (isset($_POST['painike'])){
          [$id,$password_hash,$is_active,$role] = $result->fetch_row();
          if (password_verify($password, $password_hash)){
             if ($is_active){
-               if (!session_id()) session_start();
+               if (!session_id()){ 
+                  session_set_cookie_params(ISTUNTOPITUUS);
+                  session_start();
+                  }
                $_SESSION['epaonnistuneet_yritykset'] = 0; 
                $_SESSION["loggedIn"] = $role;
                $_SESSION["user_id"] = $id;
-               if ($rememberme) rememberme($id);
+               if ($rememberme) rememberme($id,MUISTAMINUTKESTO);
                if (isset($_SESSION['next_page'])){
                   $location = $_SESSION['next_page'];
                   unset($_SESSION['next_page']);

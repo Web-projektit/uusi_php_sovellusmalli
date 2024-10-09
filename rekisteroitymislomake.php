@@ -22,7 +22,7 @@ include "header.php";
 <?php 
 if ($success != "success") { ?>
 
-<form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate >
+<form method="post" class="mb-3 col-md-9 needs-validation" enctype="multipart/form-data" novalidate >
 <fieldset>
 <legend>Rekisteröityminen</legend>
 

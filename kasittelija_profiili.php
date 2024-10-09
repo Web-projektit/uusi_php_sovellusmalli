@@ -25,8 +25,8 @@ function poista_kuva($image){
 
 function vanha_kuva($user_id){
     $query = "SELECT image FROM users WHERE id = $user_id";
-    $result = mysqli_my_query($query);
-    return ($row = $result->fetch_row()) ? $row[0] : "";
+    $result = mysqli_my_query($query)[0];
+    return $result ? $result->fetch_row()[0] : "";
     }
 
 function poista_vanha_kuva($user_id){
@@ -113,10 +113,10 @@ if (isset($_POST['painike'])){
     if (empty($errors)) {
         $query = "UPDATE users SET firstname = '$firstname',image = $image WHERE id = $user_id";
         debuggeri($query);
-        $result = mysqli_my_query($query);
+        [$result,$errno,$error] = mysqli_my_query($query);
         $muutos = $yhteys->affected_rows;
         debuggeri("muutettiin:$muutos riviä.");
-        if ($muutos) {
+        if ($muutos > 0) {
             $_SESSION['message'] = "Tiedot on tallennettu.";
             $_SESSION['success'] = "success";
             $_SESSION['display'] = "d-block";

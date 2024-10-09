@@ -41,7 +41,7 @@ function active($sivu,$active){
 /* Huom. nav-suojaus vie viimeiset linkit oikealle. */
 ?>
 <nav>
-<a class="brand-logo" href="index.php">
+<a class="brand-logo" href="<?= ETUSIVU ;?>">
 <img src="omniamusta_tausta.png" alt="Logo"></a>
 <input type="checkbox" id="toggle-btn">
 <label for="toggle-btn" class="icon open"><i class="fa fa-bars"></i></label>

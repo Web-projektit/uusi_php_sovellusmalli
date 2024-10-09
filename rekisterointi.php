@@ -81,7 +81,7 @@ if (empty($errors)) {
     $query = "INSERT INTO users (firstname, lastname, email, image, created, password) VALUES ('$firstname', '$lastname', '$email', $image, '$created', '$password')";
     debuggeri($query);
     //$result = $yhteys->query($query);
-    $result = mysqli_my_query($query);
+    [$result,$errno,$error] = mysqli_my_query($query);
     $lisays = $yhteys->affected_rows;
 
     // $user_id = $yhteys->insert_id;
@@ -89,7 +89,8 @@ if (empty($errors)) {
     debuggeri("lisays:$lisays");
     }
 
-if ($lisays) {  
+if ($lisays > 0) {  
+    /* Huom. $lisays = -1, jos lisäys ei onnistunut. */
     $id = $yhteys->insert_id;
     $token = md5(rand().time());
     $query = "INSERT INTO signup_tokens (users_id,token) VALUES ($id,'$token')";
@@ -98,7 +99,7 @@ if ($lisays) {
     $lisattiin_token = $yhteys->affected_rows;
     }
 
-if ($lisattiin_token) {
+if ($lisattiin_token > 0) {
     $msg = "Vahvista sähköpostiosoitteesi alla olevasta linkistä:<br><br>";
     $msg.= "<a href='http://$PALVELIN/$PALVELU/$LINKKI_VERIFICATION?token=$token'>Vahvista sähköpostiosoite</a>";
     $msg.= "<br><br>t. $PALVELUOSOITE";
@@ -113,7 +114,7 @@ if ($lahetetty){
     //header("Location: ./rekisterointikuittaus.php?message=$message&success=$success");
     //exit;
     }
-elseif ($lisays) {
+elseif ($lisays > 0) {
     /* Huom. oikeammin ohjataan vahvistuspyyntöön */    
     $message = "Tallennus onnistui!";
     $success = "light";

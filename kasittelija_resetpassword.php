@@ -46,7 +46,7 @@ if (isset($_POST['painike']) and !$message){
         $muutettu = $yhteys->affected_rows;
         }
 
-    if ($muutettu) {
+    if ($muutettu > 0) {
         $query = "DELETE FROM resetpassword_tokens WHERE users_id = $users_id";
         debuggeri($query);
         $result = $yhteys->query($query);
