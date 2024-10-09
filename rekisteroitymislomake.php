@@ -8,18 +8,21 @@ $pakolliset = ['firstname','lastname','email','password','password2'];
 
 $kentat_tiedosto = ['image'];
 //$css = 'rekisteroityminen.css';
+include "debuggeri.php";
+include "asetukset.php";
+include "db.php";
 include "virheilmoitukset.php";
-echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
-include "header.php";
 include "posti.php";
 include "rekisterointi.php";
+echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
+include "header.php";
 ?>
 <div class="container"> 
 
 <?php 
 if ($success != "success") { ?>
 
-<form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate >
+<form method="post" class="mb-3 col-md-9 needs-validation" enctype="multipart/form-data" novalidate >
 <fieldset>
 <legend>Rekisteröityminen</legend>
 

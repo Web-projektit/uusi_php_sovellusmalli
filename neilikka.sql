@@ -111,7 +111,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
   `is_active` enum('0','1') NOT NULL,
-  `image` varchar(50) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `role` int(4) NOT NULL DEFAULT 1,
   `created` datetime NOT NULL,
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()

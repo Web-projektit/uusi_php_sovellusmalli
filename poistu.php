@@ -1,9 +1,10 @@
 <?php
 include "asetukset.php";
+include "debuggeri.php";
 include "db.php";
 include "rememberme.php";
-/* Sessionin purkaminen */
-if (!session_id()) session_start();
+/* Sessionin purkaminen, huom. session_start() loggedIn-funktiossa. */
+// if (!session_id()) session_start();
 if ($loggedIn = loggedIn() === false) {
     header("location: login.php");
     exit;
@@ -12,7 +13,6 @@ if ($loggedIn = loggedIn() === false) {
     header("location: login.php");
     exit;
     }*/
-include "debuggeri.php";
 debuggeri(__FILE__.",session ja cookie:");    
 debuggeri($_SESSION);    
 debuggeri($_COOKIE);    
@@ -36,5 +36,5 @@ if (ini_get("session.use_cookies")) {
         $params["secure"], $params["httponly"]);
     }   
 session_destroy();
-header('location:index.php');
+header("location:".ETUSIVU);
 ?>

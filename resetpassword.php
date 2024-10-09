@@ -4,10 +4,13 @@ $title = 'Uusi salasana';
 $kentat = ['password','password2'];
 $kentat_suomi = ['salasana','salasana'];
 $pakolliset = ['password','password2'];
+include "asetukset.php";
+include "debuggeri.php";
+include "db.php";
 include "virheilmoitukset.php";
+include "kasittelija_resetpassword.php";
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php";
-include "kasittelija_resetpassword.php";
 ?>
 <div class="container"> 
 

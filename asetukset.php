@@ -5,7 +5,10 @@ $LINKKI_RESETPASSWORD = "resetpassword.php";
 $LINKKI_VERIFICATION = "verification.php";
 $PALVELUOSOITE = "asiakaspalvelu@neilikka.fi";
 
+define("MUISTAMINUTKESTO",3600*24*7);
+define("ISTUNTOPITUUS",3600);
 define("OLETUSSIVU","profiili.php");
+define("ETUSIVU","index.php");
 define("PROFIILIKUVAKANSIO","profiilikuvat");
 define("PROFIILIKUVAKOKO",5242880);
 define("EMAIL_FROM","wohjelmointi@gmail.com");

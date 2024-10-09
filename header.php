@@ -25,8 +25,8 @@ ini_set('upload_max_filesize', '10M');
 include_once "debuggeri.php";
 /* Huom. suojatulla sivulla on asetukset,db,rememberme.php; */
 if (!isset($loggedIn)){
-  require "asetukset.php";
-  include "db.php";
+  require_once "asetukset.php";
+  include_once "db.php";
   include "rememberme.php";
   $loggedIn = loggedIn();
   }
@@ -41,7 +41,7 @@ function active($sivu,$active){
 /* Huom. nav-suojaus vie viimeiset linkit oikealle. */
 ?>
 <nav>
-<a class="brand-logo" href="index.php">
+<a class="brand-logo" href="<?= ETUSIVU ;?>">
 <img src="omniamusta_tausta.png" alt="Logo"></a>
 <input type="checkbox" id="toggle-btn">
 <label for="toggle-btn" class="icon open"><i class="fa fa-bars"></i></label>

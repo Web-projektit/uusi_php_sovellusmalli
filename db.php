@@ -14,11 +14,14 @@ function mysqli_my_query($query) {
    $yhteys = $GLOBALS['yhteys']; 
    $result = false;
    try {
-      $result = $yhteys->query($query); 
+      $result = $yhteys->query($query);
+      return [$result,$yhteys->errno,$yhteys->error]; 
       } 
    catch (Exception $e) {
-      echo "<p class='alert alert-danger'>Virhe tietokantakyselyssä.</p>";
+      /* Huom. Tulisi palauttaa virhe, eikä tulostaa sitä. */
+      // echo "<p class='alert alert-danger'>Virhe tietokantakyselyssä.</p>";
       debuggeri("Virhe $yhteys->errno kyselyssa $query: " . $e->getMessage());
+      return [$result,$yhteys->errno,$e->getMessage()];
       }
    return $result;
    }

@@ -30,7 +30,7 @@ include "header.php";
 <img src="https://cdn.pixabay.com/photo/2019/07/02/03/10/highland-cattle-4311375_1280.jpg" alt="Profiilikuva" class="profile-image">
 -->
 
-<form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate >
+<form method="post" class="mb-3 col-md-9 needs-validation" enctype="multipart/form-data" novalidate >
 <fieldset>
 <legend>Profiili</legend>
 
