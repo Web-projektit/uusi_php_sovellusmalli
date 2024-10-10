@@ -70,6 +70,7 @@ function redirect($url){
         echo "<script>window.location = '$url'</script>";
         }
     else {
+        echo "Tämä on testausta varten,location:$url";
         header("location: $url");
         }
     }    
