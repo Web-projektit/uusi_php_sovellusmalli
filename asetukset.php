@@ -71,8 +71,16 @@ function redirect($url){
         }
     else {
         /* Huom. Tämä estäisi reitityksen Azuressa, mutta ei 
-           Xamppissa, jossa on käytössä output_buffering.*/
-        echo "Tämä on testausta varten,location:$url"; 
+           Xamppissa, jossa on käytössä output_buffering.
+           Azureen saa output_bufferingin ainakin .user.ini-tiedostossa. 
+           
+           Ongelma Omnian Azure-palvelimella: asettamalla output_bufferingin
+           header("location: $url") toimii, vaikka headerit
+           olisi jo lähetetty, mutta session-muuttujat ovat
+           käytettävissä kohteessa vasta viiveellä. 
+        */
+        
+        //echo "Tämä on testausta varten,location:$url"; 
         header("location: $url");
         }
     }    
