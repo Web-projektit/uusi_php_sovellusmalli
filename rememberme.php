@@ -98,6 +98,7 @@ function secure_page($role = ''){
 $loggedIn = loggedIn();
 debuggeri("secure_page,loggedIn:$loggedIn,role:$role");
 if (!$loggedIn || $role && $role != $loggedIn){
+    /* Adminin sivulla rooli on 'admin', joten myös loggedIn:n on oltava 'admin'. */
     $_SESSION['next_page'] = $_SERVER['PHP_SELF']; 
     header("location: login.php");
     exit;
