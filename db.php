@@ -14,6 +14,7 @@ function mysqli_my_query($query) {
    $yhteys = $GLOBALS['yhteys']; 
    $result = false;
    try {
+      debuggeri(__FUNCTION__.": $query");
       $result = $yhteys->query($query);
       return [$result,$yhteys->errno,$yhteys->error]; 
       } 
