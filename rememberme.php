@@ -96,6 +96,7 @@ if (insert_rememberme_token($user_id, $selector, $hash_validator, $expiry)) {
 
 function secure_page($role = ''){
 $loggedIn = loggedIn();
+debuggeri("secure_page,loggedIn:$loggedIn,role:$role");
 if (!$loggedIn || $role && $role != $loggedIn){
     $_SESSION['next_page'] = $_SERVER['PHP_SELF']; 
     header("location: login.php");

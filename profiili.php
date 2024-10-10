@@ -4,6 +4,7 @@ include "asetukset.php";
 include "debuggeri.php";
 include "db.php";
 include "rememberme.php";
+debuggeri(__FILE__);
 $loggedIn = secure_page();
 $title = 'Profiili';
 $css = 'profiili.css';
