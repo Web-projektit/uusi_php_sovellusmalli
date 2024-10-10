@@ -5,7 +5,7 @@ $message = "";
 $success = "success";
 
 $ilmoitukset['errorMsg'] = 'Kirjautuminen epäonnistui. '; 
-debuggeri("POST:".var_export($_POST,true));
+debuggeri("kasittelija_login.php,POST:".var_export($_POST,true));
 $sallittu = true;
 $eston_kesto = YRITYSKERRAT_AIKARAJA * 60;
 $_SESSION['epaonnistuneet_yritykset'] ??= 0;

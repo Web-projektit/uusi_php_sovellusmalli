@@ -13,7 +13,7 @@ if ($loggedIn = loggedIn() === false) {
     header("location: login.php");
     exit;
     }*/
-debuggeri(__FILE__.",session ja cookie:");    
+debuggeri("poistu.php,session ja cookie:");    
 debuggeri($_SESSION);    
 debuggeri($_COOKIE);    
 $user_id = $_SESSION['user_id'] ?? '';

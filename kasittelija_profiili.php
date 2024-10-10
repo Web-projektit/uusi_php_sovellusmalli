@@ -83,8 +83,7 @@ function hae_kuva($kentat_tiedosto,$user_id){
 
 
 if (isset($_POST['painike'])){
-    debuggeri("_POST:");
-    debuggeri($_POST);
+    debuggeri("kasittelija_profiili,POST:".var_export($_POST,true));
     [$errors,$values] = validointi($kentat);  
     extract($values);
     /* Huom. myös $current_image saa lomakkeelta arvon */ 
@@ -117,8 +116,7 @@ if (isset($_POST['painike'])){
             }
         }   
  
-    debuggeri(__FILE__.", virheet:");        
-    debuggeri($errors);    
+    debuggeri("kasittelija_profiili.php, virheet:".var_export($errors,true));        
     if (empty($errors)) {
         $query = "UPDATE users SET firstname = '$firstname',image = $image WHERE id = $user_id";
         debuggeri($query);

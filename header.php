@@ -2,7 +2,23 @@
 if (!session_id()) session_start();
 ini_set('default_charset', 'utf-8');
 ini_set('upload_max_filesize', '10M');
+include_once "debuggeri.php";
+/* Huom. suojatulla sivulla on asetukset,db,rememberme.php; */
+if (!isset($loggedIn)){
+  require_once "asetukset.php";
+  include_once "db.php";
+  include "rememberme.php";
+  $loggedIn = loggedIn();
+  }
+debuggeri("header.php,loggedIn:$loggedIn");  
+register_shutdown_function('debuggeri_shutdown');
+$active = basename($_SERVER['PHP_SELF'], ".php");
 
+function active($sivu,$active){
+  return $active == $sivu ? 'active' : '';  
+  }
+
+/* Huom. nav-suojaus vie viimeiset linkit oikealle. */
 ?>
 <!DOCTYPE html>
 <html lang="fi">
@@ -21,25 +37,6 @@ ini_set('upload_max_filesize', '10M');
 <title><?= $title ?? 'Sivusto'; ?></title>
 </head>
 <body>
-<?php 
-include_once "debuggeri.php";
-/* Huom. suojatulla sivulla on asetukset,db,rememberme.php; */
-if (!isset($loggedIn)){
-  require_once "asetukset.php";
-  include_once "db.php";
-  include "rememberme.php";
-  $loggedIn = loggedIn();
-  }
-debuggeri("loggedIn:$loggedIn");  
-register_shutdown_function('debuggeri_shutdown');
-$active = basename($_SERVER['PHP_SELF'], ".php");
-
-function active($sivu,$active){
-  return $active == $sivu ? 'active' : '';  
-  }
-
-/* Huom. nav-suojaus vie viimeiset linkit oikealle. */
-?>
 <nav>
 <a class="brand-logo" href="<?= ETUSIVU ;?>">
 <img src="omniamusta_tausta.png" alt="Logo"></a>
