@@ -95,6 +95,7 @@ if (insert_rememberme_token($user_id, $selector, $hash_validator, $expiry)) {
 
 
 function secure_page($role = ''){
+if (!session_id()) session_start();    
 $loggedIn = loggedIn();
 debuggeri("secure_page,loggedIn:$loggedIn,role:$role");
 if (!$loggedIn || $role && $role != $loggedIn){

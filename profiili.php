@@ -1,5 +1,4 @@
 <?php 
-// ob_start();
 include "asetukset.php";
 include "debuggeri.php";
 include "db.php";
