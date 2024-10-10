@@ -3,6 +3,7 @@ include "asetukset.php";
 include "debuggeri.php";
 include "db.php";
 include "rememberme.php";
+debuggeri(__FILE__);
 if ($loggedIn = loggedIn()) {
     header("location: profiili.php");
     exit;
