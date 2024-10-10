@@ -1,4 +1,5 @@
-<?php 
+<?php
+if (!session_id()) session_start();
 include "asetukset.php";
 include "debuggeri.php";
 include "db.php";

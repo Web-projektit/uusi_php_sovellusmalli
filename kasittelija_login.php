@@ -62,7 +62,7 @@ if (isset($_POST['painike'])){
                   unset($_SESSION['next_page']);
                   }
                else $location = OLETUSSIVU;  
-               session_write_close(); 
+               //session_write_close(); 
                $headers_sent = headers_sent() ? "true" : "false";
                debuggeri("kasittelija_login,headers sent: $headers_sent");
                redirect($location);
