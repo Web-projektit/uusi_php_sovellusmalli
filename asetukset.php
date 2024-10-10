@@ -70,7 +70,9 @@ function redirect($url){
         echo "<script>window.location = '$url'</script>";
         }
     else {
-        echo "Tämä on testausta varten,location:$url";
+        /* Huom. Tämä estäisi reitityksen Azuressa, mutta ei 
+           Xamppissa, jossa on käytössä output_buffering.*/
+        echo "Tämä on testausta varten,location:$url"; 
         header("location: $url");
         }
     }    
