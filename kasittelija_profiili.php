@@ -18,57 +18,67 @@ function poista_tunniste($image){
 return preg_replace('/_[^_]+\.(jpg|jpeg|png|gif)$/i', '.$1', $image);
 }
 
-function poista_kuva($image){
-    $kuvatiedosto = PROFIILIKUVAKANSIO."/".$image;
+function lisaa_tunniste($image,$tunniste){
+// return preg_replace('/\.(jpg|jpeg|png|gif)$/i', "_$tunniste.$1", $image);
+return preg_replace('/(\.[^.]+)$/', "_$tunniste$1", $image);     
+}
+
+function poista_kuva($imagefile){
+    $kuvatiedosto = PROFIILIKUVAKANSIO."/".$imagefile;
     if (file_exists($kuvatiedosto)) unlink($kuvatiedosto);
     }
 
 function vanha_kuva($user_id){
     $query = "SELECT image FROM users WHERE id = $user_id";
     $result = mysqli_my_query($query)[0];
-    return $result ? $result->fetch_row()[0] : "";
+    return $result ? lisaa_tunniste($result->fetch_row()[0],$user_id) : "";
     }
 
-function poista_vanha_kuva($user_id){
-    $image = vanha_kuva($user_id);
-    if ($image) poista_kuva($image);
+function poista_vanha_kuva($imagefile,$user_id){
+    $vanha_imagefile = vanha_kuva($user_id);
+    debuggeri("vanha_imagefile:$vanha_imagefile");
+    if ($vanha_imagefile && $vanha_imagefile <> $imagefile) poista_kuva($vanha_imagefile);
     }    
 
-function hae_kuva($kentat_tiedosto){   
+function hae_kuva($kentat_tiedosto,$user_id){   
 /* Huom. foreach-silmukka on tässä malliksi, ei valmis.
-   Nimen tarkistukseen ei ole tässä koodia. */
-    // $kentat_tiedosto = $GLOBALS['kentat_tiedosto'];   
+   Nimen tarkistukseen ei ole tässä koodia. 
+   Vaihtoehtona satunnaisluvulle tunnisteena on tässä käyttäjän id.
+   Vanha kuva poistetaan, jos uusi kuva on eri niminen tai 
+   tai sitä ei ole lomakkeella. 
+*/
+     
     $allowed_images = $GLOBALS['allowed_images'];
     $virhe = false;   
     $image = "";
+    $imagefile = "";
     foreach ($kentat_tiedosto as $kentta){
         debuggeri("tiedostokentta:$kentta"); 
         if (!isset($_FILES[$kentta])) continue;    
         if (is_uploaded_file($_FILES[$kentta]['tmp_name'])) {
-        $random = randomString(3);
         $maxsize = PROFIILIKUVAKOKO;
         $temp_file = $_FILES[$kentta]["tmp_name"];       
         $filesize = $_FILES[$kentta]['size'];
+        $image = $_FILES[$kentta]['name'];
         $pathinfo = pathinfo($_FILES[$kentta]["name"]);
         $filetype = strtolower($pathinfo['extension']);
-        $image = $pathinfo['filename']."_$random.$filetype";
-        $target_dir = PROFIILIKUVAKANSIO;
-        $target_file = "$target_dir/$image";
+        $imagefile = lisaa_tunniste($image,$user_id);
+        $target_file = PROFIILIKUVAKANSIO."/$imagefile";
         debuggeri("tiedosto:$temp_file, kohde:$target_file");
         debuggeri("tiedostotyyppi:$filetype, koko:$filesize");
         /* Check if image file is a actual image or fake image */
         if (!$check = getimagesize($temp_file)) $virhe = "Kuva ei kelpaa.";
-        elseif (file_exists($target_file)) $virhe = "Kuvatiedosto on jo olemassa.";
         elseif (!in_array($filetype,$allowed_images)) $virhe = "Väärä tiedostotyyppi.";
         elseif ($filesize > $maxsize) $virhe = "Kuvan koon tulee olla korkeintaan 5 MB.";
-        debuggeri("File $image,mime: {$check['mime']}, $filetype, $filesize tavua");
+        debuggeri("Imagefile $imagefile,mime: {$check['mime']}, $filetype, $filesize tavua");
         if (!$virhe){
+            /* Huom. Tämä korvaa aikaisemman samannimisen tiedoston */
             if (!move_uploaded_file($temp_file,$target_file)) 
                 $virhe = "Kuvan tallennus ei onnistunut.";
             } 
         }
       }
-    return [$image,$virhe];
+    return [$imagefile,$image,$virhe];
     }
 
 
@@ -85,24 +95,23 @@ if (isset($_POST['painike'])){
            image että virhe jäävät tyhjiksi, ja
            käytetään $_POST['current_image']-arvoa. 
         */
-        [$image,$virhe] = hae_kuva($kentat_tiedosto);
-        debuggeri("image:$image");
+        [$imagefile,$image,$virhe] = hae_kuva($kentat_tiedosto,$user_id);
+        debuggeri("imagefile:$imagefile");
         if ($virhe) $errors['image'] = $virhe;
         elseif (!$image && $current_image) {
             $image = "'$current_image'";
-            $kuvatiedosto = PROFIILIKUVAKANSIO."/".$current_image;
+            $imagefile = lisaa_tunniste($current_image,$user_id);
+            $kuvatiedosto = PROFIILIKUVAKANSIO."/".$imagefile;
             }
         elseif ($image) {
-            /* Huom. Vanha kuva poistetaan, joten myös 
-               current_image saa uuden profiilikuvanimen. */
-            poista_vanha_kuva($user_id);
-            $kuvatiedosto = PROFIILIKUVAKANSIO."/".$image;
+            poista_vanha_kuva($imagefile,$user_id);
+            $kuvatiedosto = PROFIILIKUVAKANSIO."/".$imagefile;
             $current_image = $image;
             $image = "'$image'";
             }
         else {
             /* Huom. image ja current_image ovat tyhjiä. */
-            poista_vanha_kuva($user_id);
+            poista_vanha_kuva($imagefile,$user_id);
             $kuvatiedosto = "";
             $image = "NULL";
             }
@@ -146,7 +155,8 @@ elseif ($user_id) {
    if ($row = $result->fetch_array(MYSQLI_ASSOC)) {
       $image = $row['image'];
       if ($image) {
-         $kuvatiedosto = PROFIILIKUVAKANSIO."/".$image;
+         $imagefile = lisaa_tunniste($image,$user_id);
+         $kuvatiedosto = PROFIILIKUVAKANSIO."/".$imagefile;
          if (!file_exists($kuvatiedosto)) {
             $kuvatiedosto = "";
             $message = "Kuvaa ei löydy.";
@@ -154,9 +164,9 @@ elseif ($user_id) {
             $display = "d-block";
             }
           else {
-            /* Poistetaan tunnistetieto kuvan nimestä.
-                Jos kuva säilyy samana profiililomakkeella, luodaan
-                uusi tunniste ja tallennetaan kuva entisen sijaan sillä. */
+            /* Jos kuva säilyy samana profiililomakkeella, luodaan
+               uusi tunniste ja tallennetaan kuva entisen sijaan sillä. 
+            */
             $current_image = $image;
             }    
           }
