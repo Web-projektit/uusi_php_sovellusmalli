@@ -1,10 +1,10 @@
 <?php
+if (!session_id()) session_start();
 include "asetukset.php";
 include "debuggeri.php";
 include "db.php";
 include "rememberme.php";
 /* Sessionin purkaminen, huom. session_start() loggedIn-funktiossa. */
-// if (!session_id()) session_start();
 if ($loggedIn = loggedIn() === false) {
     header("location: login.php");
     exit;
