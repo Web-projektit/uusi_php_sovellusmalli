@@ -65,4 +65,12 @@ elseif (SAHKOPOSTIPALVELU == 'mailtrap'){
     //debuggeri("username:".USERNAME.",password:".PASSWORD);
     }
 
+function redirect($url){
+    if (headers_sent()){
+        echo "<script>window.location = '$url'</script>";
+        }
+    else {
+        header("location: $url");
+        }
+    }    
 ?>
