@@ -18,7 +18,7 @@ include "virheilmoitukset.php";
 include 'kasittelija_login.php';
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 include "header.php"; 
-debuggeri($errors);
+// debuggeri($errors);
 ?>
 <div class="container">
 
