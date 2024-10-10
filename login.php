@@ -5,6 +5,7 @@ include "db.php";
 include "rememberme.php";
 debuggeri(__FILE__);
 if ($loggedIn = loggedIn()) {
+    debuggeri("login.php,$loggedIn kirjautunut, ohjataan profiiliin.");
     header("location: profiili.php");
     exit;
     }
