@@ -22,7 +22,7 @@ $patterns['firstname'] = "/^[a-zåäöA-ZÅÄÖ'\-]+$/";
 $patterns['lastname'] = $patterns['firstname']; 
 $patterns['name'] = "/^[a-zåäöA-ZÅÄÖ '\-]+$/";
 $patterns['mobilenumber'] = "/^[0-9]{7,15}$/";
-$patterns['email'] = "/^[$w]+[$w.+-]*@[$w-]+(\.[$w-]{2,})?\.[a-zA-Z]{2,}$/";
+$patterns['email'] = "/^[$w]+[$w.+\-]*@[$w\-]+(\.[$w\-]{2,})?\.[a-zA-Z]{2,}$/";
 $patterns['image'] = "/^[^\s]+\.(jpe?g|png|gif|bmp)$/"; 
 $patterns['rememberme'] = "/^checked$/";
 
